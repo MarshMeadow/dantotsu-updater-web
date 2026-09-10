@@ -16,9 +16,14 @@ import {
   Info,
   Globe,
   GitFork,
+  HelpCircle,
+  Monitor,
+  CheckCircle,
 } from 'lucide-react'
 import { fetchLatestRelease, formatBytes, formatDate, getPlatform, getReleaseType } from '../api/release'
+import { fetchRepoPushedAt, timeAgo } from '../api/github'
 import type { Release } from '../api/types'
+import Seo from '../components/Seo'
 import { DISCLAIMER, RISK_NOTICE } from '../constants/legal'
 import {
   DANTOTSU_DISCORD,
@@ -64,8 +69,39 @@ export default function Home() {
     return apk ?? null
   }, [status])
 
+  const [forkPushed, setForkPushed] = useState<Record<string, string | null>>({})
+
+  useEffect(() => {
+    let active = true
+    const load = async () => {
+      const next: Record<string, string | null> = {}
+      await Promise.all(
+        MAINTAINED_FORKS.map(async (fork) => {
+          try {
+            const url = new URL(fork.url)
+            const [, owner, repo] = url.pathname.split('/')
+            if (!owner || !repo) return
+            const pushed = await fetchRepoPushedAt(owner, repo)
+            if (active) next[fork.url] = pushed
+          } catch {
+            // ignore per-fork failures
+          }
+        })
+      )
+      if (active) setForkPushed(next)
+    }
+    load()
+    return () => {
+      active = false
+    }
+  }, [])
+
   return (
     <>
+      <Seo
+        title="Download the Latest Version"
+        description="Download the latest version of Dantotsu, an open-source anime streaming app. View release notes, forks, and community links."
+      />
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-glow" aria-hidden="true" />
         <div className="hero-glow hero-glow-2" aria-hidden="true" />
@@ -378,7 +414,14 @@ export default function Home() {
             {MAINTAINED_FORKS.map((fork) => (
               <article className="fork-card" key={fork.url} role="listitem">
                 <h3>{fork.name}</h3>
-                <p className="fork-author">by {fork.author}</p>
+                <p className="fork-author">
+                  by {fork.author}
+                  {forkPushed[fork.url] && (
+                    <span className="fork-updated">
+                      updated {timeAgo(forkPushed[fork.url]!)}
+                    </span>
+                  )}
+                </p>
                 <p className="fork-desc">{fork.description}</p>
                 <div className="fork-tags">
                   {fork.tags.map((tag) => (
@@ -399,6 +442,77 @@ export default function Home() {
                 </a>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className="section section-raised" aria-labelledby="install-title">
+          <h2 id="install-title" className="section-heading">
+            <Monitor size={22} aria-hidden="true" />
+            How to install
+          </h2>
+          <ol className="install-list">
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Download the latest <strong>.apk</strong> from the release above.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Open the downloaded file. Android may ask you to allow installation from this source.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Enable <strong>Install from unknown sources</strong> for your browser or file manager.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Wait for the installation to finish, then open Dantotsu and sign in with your tracker.
+              </span>
+            </li>
+          </ol>
+        </section>
+
+        <section className="section section-raised" aria-labelledby="faq-title">
+          <h2 id="faq-title" className="section-heading">
+            <HelpCircle size={22} aria-hidden="true" />
+            Frequently asked questions
+          </h2>
+          <div className="faq-list">
+            <details className="faq-item">
+              <summary>Is this the official Dantotsu website?</summary>
+              <p>
+                No. This is an independent community mirror for the updater repository. The official
+                website is <a href={DANTOTSU_WEBSITE} target="_blank" rel="noopener noreferrer">dantotsu.app</a>.
+              </p>
+            </details>
+            <details className="faq-item">
+              <summary>Does Dantotsu host anime or manga?</summary>
+              <p>
+                No. Dantotsu is a tracking and management app. It does not host, upload, or distribute
+                any media. Any streaming or reading functionality depends on third-party extensions.
+              </p>
+            </details>
+            <details className="faq-item">
+              <summary>Is it safe to install APKs from this page?</summary>
+              <p>
+                The APKs are downloaded directly from the linked GitHub release. Always verify the
+                source, check the repository, and install at your own risk.
+              </p>
+            </details>
+            <details className="faq-item">
+              <summary>What is a fork?</summary>
+              <p>
+                A fork is an independent project built from Dantotsu’s source. Forks may add new
+                features, support other platforms, or focus on different use cases. They are not
+                officially supported by the Dantotsu team.
+              </p>
+            </details>
           </div>
         </section>
       </div>

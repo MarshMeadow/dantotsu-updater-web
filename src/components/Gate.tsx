@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Shield, ArrowRight } from 'lucide-react'
 
 const STORAGE_KEY = 'dantotsu-verified'
@@ -28,10 +28,54 @@ function createPuzzle(): Puzzle {
   return { text: `${a} ${op} ${b}`, answer }
 }
 
+function getFocusable(container: HTMLElement): HTMLElement[] {
+  return Array.from(
+    container.querySelectorAll<HTMLElement>(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )
+  ).filter((el) => {
+    if (el.getAttribute('tabindex') === '-1') return false
+    if ('disabled' in el && (el as HTMLButtonElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).disabled) {
+      return false
+    }
+    const style = window.getComputedStyle(el)
+    return style.display !== 'none' && style.visibility !== 'hidden'
+  })
+}
+
 export default function Gate({ onVerify }: { onVerify: () => void }) {
   const puzzle = useMemo(createPuzzle, [])
   const [value, setValue] = useState('')
   const [error, setError] = useState<string | null>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const card = cardRef.current
+    if (!card) return
+    const container = card as HTMLElement
+    const first = getFocusable(container)[0]
+    first?.focus()
+
+    function handleKey(e: KeyboardEvent) {
+      if (e.key !== 'Tab') return
+      const items = getFocusable(container)
+      if (items.length === 0) return
+      if (e.shiftKey) {
+        if (document.activeElement === items[0]) {
+          e.preventDefault()
+          items[items.length - 1].focus()
+        }
+      } else {
+        if (document.activeElement === items[items.length - 1]) {
+          e.preventDefault()
+          items[0].focus()
+        }
+      }
+    }
+
+    card.addEventListener('keydown', handleKey)
+    return () => card.removeEventListener('keydown', handleKey)
+  }, [])
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault()
@@ -55,7 +99,7 @@ export default function Gate({ onVerify }: { onVerify: () => void }) {
 
   return (
     <div className="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
-      <div className="gate-card">
+      <div className="gate-card" ref={cardRef}>
         <Shield size={40} className="gate-icon" aria-hidden="true" />
         <h2 id="gate-title" className="gate-title">
           Verify you are human

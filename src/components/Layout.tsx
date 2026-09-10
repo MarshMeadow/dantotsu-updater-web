@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import ThemeToggle from './ThemeToggle'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,6 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <NavLink to="/dmca" className="nav-link">
               DMCA / Legal
             </NavLink>
+            <ThemeToggle />
           </nav>
         </div>
       </header>

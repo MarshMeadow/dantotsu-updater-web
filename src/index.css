@@ -961,6 +961,146 @@ button {
   border-radius: var(--radius-sm);
 }
 
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  transition: background var(--transition), color var(--transition);
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+  background: var(--surface-2);
+  color: var(--primary-bright);
+}
+
+.fork-updated {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--success);
+}
+
+.not-found {
+  text-align: center;
+  padding: 5rem 1rem;
+}
+
+.not-found h1 {
+  margin: 1rem 0 0.5rem;
+}
+
+.not-found p {
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+}
+
+.not-found-icon {
+  color: var(--warning);
+}
+
+.install-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.install-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--text-dim);
+}
+
+.install-list li svg {
+  color: var(--success);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.faq-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.faq-item {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.faq-item summary {
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.2rem;
+  color: var(--primary-bright);
+  transition: transform var(--transition);
+}
+
+.faq-item[open] summary::after {
+  content: '−';
+}
+
+.faq-item p {
+  padding: 0 1.25rem 1.25rem;
+  margin: 0;
+  color: var(--text-dim);
+  line-height: 1.65;
+}
+
+/* Light theme */
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f4f6fa;
+  --surface: #ffffff;
+  --surface-2: #f8f9fb;
+  --surface-3: #eef0f4;
+  --border: #e1e4eb;
+  --border-subtle: #ebedf2;
+  --text: #0f172a;
+  --text-dim: #334155;
+  --muted: #64748b;
+  --primary: #2563eb;
+  --primary-bright: #3b82f6;
+  --primary-dim: rgba(37, 99, 235, 0.12);
+  --danger: #dc2626;
+  --warning: #d97706;
+  --success: #16a34a;
+}
+
+[data-theme='light'] .site-header {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme='light'] .hero-glow,
+[data-theme='light'] .hero-glow-2 {
+  opacity: 0.4;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

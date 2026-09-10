@@ -1,8 +1,13 @@
 import { NavLink } from 'react-router-dom'
+import Seo from '../components/Seo'
 
 export default function Dmca() {
   return (
     <div className="container">
+      <Seo
+        title="DMCA / Legal"
+        description="DMCA and legal information for the Dantotsu Updater community website."
+      />
       <article className="page-article">
         <h1>DMCA / Legal</h1>
 

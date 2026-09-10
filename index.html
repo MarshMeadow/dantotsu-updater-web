@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,9 +13,27 @@
     <meta property="og:title" content="Dantotsu Updater - Latest Version" />
     <meta property="og:description" content="Download the latest Dantotsu release, view changelogs, and find official community links." />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="/og-image.svg" />
+    <meta property="og:site_name" content="Dantotsu Updater" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/og-image.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icon-192.svg" />
+    <link rel="manifest" href="/manifest.json" />
     <title>Dantotsu Updater - Download the Latest Version</title>
   </head>
   <body>
+    <noscript>
+      <style>
+        #root { display: none !important; }
+        .noscript { font-family: system-ui, sans-serif; background: #05070a; color: #f0f2f5; padding: 2rem; text-align: center; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .noscript h1 { color: #4f8ef7; }
+      </style>
+      <div class="noscript">
+        <h1>JavaScript is required</h1>
+        <p>Dantotsu Updater needs JavaScript to fetch the latest release data and verify your browser. Please enable JavaScript to continue.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

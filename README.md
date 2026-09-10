@@ -1,4 +1,4 @@
-# 🌟 Dantotsu Updater Website
+# 🌟 Dantotsu App Updater Website
 
 <p align="center">
   <img src="public/icon-192.svg" alt="Dantotsu Updater logo" width="96">

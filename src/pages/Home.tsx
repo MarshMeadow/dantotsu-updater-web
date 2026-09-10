@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import {
   Download,
   MessageCircle,
@@ -394,10 +395,10 @@ export default function Home() {
               <span>Dantotsu source</span>
               <ExternalLink size={14} aria-hidden="true" />
             </a>
-            <a href="/dmca" className="social-card" role="listitem">
+            <NavLink to="/dmca" className="social-card" role="listitem">
               <Shield size={22} aria-hidden="true" />
               <span>DMCA / Legal</span>
-            </a>
+            </NavLink>
           </div>
         </section>
 

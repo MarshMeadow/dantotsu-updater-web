@@ -9,6 +9,11 @@
 </p>
 
 <p align="center">
+  <a href="https://dantotsu-app-updater-qps8xc1ip-meadows-projects-000c43b8.vercel.app/" target="_blank" rel="noopener noreferrer">🚀 Vercel Demo</a> •
+  <a href="https://marshmeadow.github.io/dantotsu-updater-web/" target="_blank" rel="noopener noreferrer">🌐 GitHub Pages Demo</a>
+</p>
+
+<p align="center">
   <a href="#-features">Features</a> •
   <a href="#-getting-started">Getting Started</a> •
   <a href="#-deployment">Deployment</a> •

@@ -77,6 +77,15 @@ The project is configured to work with **relative asset paths**, making it easy 
    - **Publish directory:** `dist`
 3. `public/_redirects` is already included for SPA routing.
 
+### Vercel
+
+1. Import the repo on Vercel.
+2. Use these settings:
+   - **Framework preset:** Vite
+   - **Build command:** `npm run build`
+   - **Output directory:** `dist`
+3. `vercel.json` is included to serve `index.html` for all routes and to set basic security headers.
+
 ### Before you publish
 
 - Update the domain in `public/robots.txt` and `public/sitemap.xml`.

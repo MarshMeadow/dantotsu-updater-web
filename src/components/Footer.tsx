@@ -57,6 +57,14 @@ export default function Footer() {
             <Shield size={16} aria-hidden="true" />
             DMCA / Legal
           </NavLink>
+          <NavLink to="/privacy" className="footer-link">
+            <Shield size={16} aria-hidden="true" />
+            Privacy
+          </NavLink>
+          <NavLink to="/terms" className="footer-link">
+            <Shield size={16} aria-hidden="true" />
+            Terms
+          </NavLink>
         </nav>
         <p className="footer-disclaimer">
           {DISCLAIMER} {RISK_NOTICE}

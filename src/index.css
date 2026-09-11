@@ -894,6 +894,33 @@ button {
   margin: 0;
 }
 
+.disclaimer-scroll {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  max-height: 14rem;
+  overflow-y: auto;
+  text-align: left;
+  margin-bottom: 1.25rem;
+}
+
+.disclaimer-text {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0 0 0.75rem;
+}
+
+.disclaimer-text:last-child {
+  margin-bottom: 0;
+}
+
+.disclaimer-actions {
+  display: flex;
+  justify-content: center;
+}
+
 /* Forks */
 .fork-card {
   background: var(--surface);

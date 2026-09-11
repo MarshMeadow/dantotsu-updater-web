@@ -571,6 +571,56 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="section section-raised" aria-labelledby="troubleshoot-title">
+          <h2 id="troubleshoot-title" className="section-heading">
+            <AlertTriangle size={22} aria-hidden="true" />
+            Something not loading?
+          </h2>
+          <p className="about-text">
+            If the app feels empty or content fails to load, run through these checks — they fix
+            almost every issue:
+          </p>
+          <ul className="about-list">
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                <strong>Sign in first.</strong> Most features need a tracker account — connect
+                AniList, MyAnimeList, or Simkl in the app settings. Being signed out is the most
+                common reason nothing loads.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                <strong>Update the app.</strong> Older builds break when sources change. Grab the
+                latest release above, or let Obtainium keep it updated for you.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                <strong>Update your extensions.</strong> Missing or outdated extensions are the other
+                big cause of loading failures — see the{' '}
+                <NavLink to="/extensions">extension setup page</NavLink> for current repos.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                <strong>Still stuck?</strong> Ask in the{' '}
+                <a href={DANTOTSU_DISCORD} target="_blank" rel="noopener noreferrer">
+                  official Discord
+                </a>{' '}
+                or{' '}
+                <a href={DANTOTSU_TELEGRAM} target="_blank" rel="noopener noreferrer">
+                  Telegram
+                </a>{' '}
+                — the community is quick to help.
+              </span>
+            </li>
+          </ul>
+        </section>
+
         <section className="section section-raised" aria-labelledby="faq-title">
           <h2 id="faq-title" className="section-heading">
             <HelpCircle size={22} aria-hidden="true" />
@@ -604,6 +654,15 @@ export default function Home() {
                 A fork is an independent project built from Dantotsu’s source. Forks may add new
                 features, support other platforms, or focus on different use cases. They are not
                 officially supported by the Dantotsu team.
+              </p>
+            </details>
+            <details className="faq-item">
+              <summary>Why isn’t anything loading in the app?</summary>
+              <p>
+                Three things to check, in order: make sure you’re <strong>signed in</strong> to a
+                tracker (AniList, MyAnimeList, or Simkl), the <strong>app is up to date</strong>, and
+                your <strong>extensions are installed and current</strong>. Outdated extensions and
+                being signed out cause most loading problems.
               </p>
             </details>
             <details className="faq-item">

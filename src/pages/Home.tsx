@@ -66,8 +66,13 @@ export default function Home() {
 
   const primaryDownload = useMemo(() => {
     if (status.kind !== 'ok') return null
-    const apk = status.release.assets.find((a) => a.name.toLowerCase().endsWith('.apk'))
-    return apk ?? null
+    const lowerAssets = status.release.assets.map((a) => ({
+      ...a,
+      lower: a.name.toLowerCase(),
+    }))
+    const universal = lowerAssets.find((a) => a.lower.endsWith('.apk') && a.lower.includes('universal'))
+    const firstApk = lowerAssets.find((a) => a.lower.endsWith('.apk'))
+    return (universal ?? firstApk) ?? null
   }, [status])
 
   const [forkPushed, setForkPushed] = useState<Record<string, string | null>>({})

@@ -564,6 +564,10 @@ export default function Home() {
               <ExternalLink size={18} />
               Get Obtainium
             </a>
+            <NavLink to="/obtainium" className="button button-secondary">
+              <HelpCircle size={18} />
+              Full setup guide
+            </NavLink>
           </div>
         </section>
 

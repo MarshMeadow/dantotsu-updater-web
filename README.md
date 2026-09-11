@@ -37,7 +37,7 @@
 - 🔁 **Multi-source archive** — the release archive automatically falls back across mirrors and proxies if a source fails.
 - ⭐ **Live repo & community stats** — GitHub star counts on repo cards and a live Discord member count.
 - 🤝 **Contributors page** — live contributor lists for Dantotsu, the updater, and this website, plus a maintainers highlight.
-- 🔄 **Obtainium guide** — steps to auto-update Dantotsu straight from GitHub releases, with a one-tap add link.
+- 🔄 **Obtainium guide** — a dedicated step-by-step page for auto-updating Dantotsu straight from GitHub releases, with a one-tap add link.
 - 🚀 **SEO + Open Graph + PWA manifest** — ready to share anywhere.
 - 🛡️ **Security headers & safe links** — CSP, `noopener noreferrer`, and URL allow-lists.
 - 📄 **DMCA / Legal page** — required legal and takedown information.
@@ -186,7 +186,7 @@ The project is configured to work with **relative asset paths**, making it easy 
 │   ├── components/      # Reusable UI components (Layout, Gate, ThemeToggle, Seo, Loading)
 │   ├── constants/       # Links and legal text
 │   ├── hooks/           # Shared data hooks (repo meta, Discord stats)
-│   ├── pages/           # Home, Community, Resources, Contributors, Archive, Extensions, Dmca, Privacy, Terms, NotFound
+│   ├── pages/           # Home, Community, Resources, Contributors, Obtainium, Archive, Extensions, Dmca, Privacy, Terms, NotFound
 │   ├── App.tsx          # Router, lazy loading, and verification gate
 │   └── main.tsx         # Entry point with Helmet & HashRouter
 ├── index.html           # Root HTML with security headers and noscript fallback

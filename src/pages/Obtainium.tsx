@@ -11,6 +11,7 @@ import {
   Smartphone,
 } from 'lucide-react'
 import Seo from '../components/Seo'
+import CopyText from '../components/CopyText'
 import {
   DANTOTSU_DISCORD,
   MAINTAINED_FORKS,
@@ -76,7 +77,7 @@ export default function Obtainium() {
             <li>
               <CheckCircle size={16} aria-hidden="true" />
               <span>
-                In <strong>App Source URL</strong>, paste: <code>{UPDATER_REPO}</code>
+                In <strong>App Source URL</strong>, paste: <CopyText text={UPDATER_REPO} />
               </span>
             </li>
             <li>
@@ -213,7 +214,7 @@ export default function Obtainium() {
                   <a href={fork.url} target="_blank" rel="noopener noreferrer">
                     {fork.name}
                   </a>{' '}
-                  — <code>{fork.url.replace('https://github.com/', '')}</code>
+                  — <CopyText text={fork.url.replace('https://github.com/', '')} />
                 </span>
               </li>
             ))}

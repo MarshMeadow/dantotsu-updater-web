@@ -186,7 +186,9 @@ The project is configured to work with **relative asset paths**, making it easy 
 │   ├── components/      # Reusable UI components (Layout, Gate, ThemeToggle, Seo, Loading)
 │   ├── constants/       # Links and legal text
 │   ├── hooks/           # Shared data hooks (repo meta, Discord stats)
-│   ├── pages/           # Home, Community, Resources, Contributors, Obtainium, Archive, Extensions, Dmca, Privacy, Terms, NotFound
+│   ├── pages/           # Home, Community, Resources, Contributors, Obtainium, History, Settings, Sitemap, Archive, Extensions, Dmca, Privacy, Terms, NotFound
+│   ├── i18n/            # Language provider + translations (10 languages, RTL support)
+│   ├── data/            # Search index used by the site search overlay
 │   ├── App.tsx          # Router, lazy loading, and verification gate
 │   └── main.tsx         # Entry point with Helmet & HashRouter
 ├── index.html           # Root HTML with security headers and noscript fallback

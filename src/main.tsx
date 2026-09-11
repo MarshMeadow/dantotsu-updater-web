@@ -4,17 +4,28 @@ import { HashRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import App from './App'
 import './index.css'
+import { LanguageProvider } from './i18n'
 import { initProtections } from './utils/protections'
 
 initProtections()
 
 try {
+  if (localStorage.getItem('dantotsu-animations') === 'off') {
+    document.documentElement.dataset.animations = 'off'
+  }
+} catch {
+  // ignore
+}
+
+try {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <HelmetProvider>
-        <HashRouter>
-          <App />
-        </HashRouter>
+        <LanguageProvider>
+          <HashRouter>
+            <App />
+          </HashRouter>
+        </LanguageProvider>
       </HelmetProvider>
     </StrictMode>,
   )

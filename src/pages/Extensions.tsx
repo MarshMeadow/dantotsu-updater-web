@@ -299,7 +299,9 @@ export default function Extensions() {
                     value={item.url}
                     className="quick-input"
                     aria-label={`${item.name} URL`}
+                    title="Tap to copy"
                     onFocus={(e) => e.target.select()}
+                    onClick={() => copyUrl(item.url)}
                   />
                   <button
                     type="button"

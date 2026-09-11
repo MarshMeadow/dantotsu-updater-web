@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom'
-import { MessageCircle, GitBranch, ExternalLink, Shield, Download, Lock, Heart, Globe, Users, RefreshCw } from 'lucide-react'
+import { MessageCircle, GitBranch, ExternalLink, Shield, Download, Lock, Heart, Globe, Users, RefreshCw, Map, History, Settings } from 'lucide-react'
 import { DISCLAIMER, RISK_NOTICE } from '../constants/legal'
+import { useI18n } from '../i18n'
 import { DANTOTSU_DISCORD, DANTOTSU_TELEGRAM, UPDATER_TELEGRAM, UPDATER_REPO, DANTOTSU_SOURCE, WEBSITE_REPO, REBELONION_SPONSOR, MARSHMEADOW_WEBSITE, MARSHMEADOW_LIST, MARSHMEADOW_GITHUB } from '../constants/links'
 
 export default function Footer() {
+  const { t } = useI18n()
   return (
     <footer className="site-footer">
       <div className="container footer-inner">
@@ -73,39 +75,51 @@ export default function Footer() {
           </a>
           <NavLink to="/community" className="footer-link">
             <MessageCircle size={16} aria-hidden="true" />
-            Community
+            {t('nav.community')}
           </NavLink>
           <NavLink to="/resources" className="footer-link">
             <GitBranch size={16} aria-hidden="true" />
-            Resources
+            {t('nav.resources')}
           </NavLink>
           <NavLink to="/contributors" className="footer-link">
             <Users size={16} aria-hidden="true" />
-            Contributors
+            {t('footer.contributors')}
           </NavLink>
           <NavLink to="/obtainium" className="footer-link">
             <RefreshCw size={16} aria-hidden="true" />
-            Obtainium Guide
+            {t('footer.obtainiumGuide')}
+          </NavLink>
+          <NavLink to="/sitemap" className="footer-link">
+            <Map size={16} aria-hidden="true" />
+            {t('footer.sitemap')}
+          </NavLink>
+          <NavLink to="/history" className="footer-link">
+            <History size={16} aria-hidden="true" />
+            {t('footer.history')}
+          </NavLink>
+          <NavLink to="/settings" className="footer-link">
+            <Settings size={16} aria-hidden="true" />
+            {t('nav.settings')}
           </NavLink>
           <NavLink to="/archive" className="footer-link">
             <Download size={16} aria-hidden="true" />
-            Archive
+            {t('nav.archive')}
           </NavLink>
           <NavLink to="/extensions" className="footer-link">
             <Lock size={16} aria-hidden="true" />
-            Extensions
+            {t('footer.extensions')}
           </NavLink>
           <NavLink to="/dmca" className="footer-link">
             <Shield size={16} aria-hidden="true" />
-            DMCA / Legal
+            {t('footer.legal')}
           </NavLink>
           <NavLink to="/privacy" className="footer-link">
             <Shield size={16} aria-hidden="true" />
-            Privacy
+            {t('footer.privacy')}
           </NavLink>
           <NavLink to="/terms" className="footer-link">
             <Shield size={16} aria-hidden="true" />
-            Terms
+            {t('footer.terms')}
           </NavLink>
           <a
             href={MARSHMEADOW_WEBSITE}

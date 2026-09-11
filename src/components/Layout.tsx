@@ -1,18 +1,22 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { Menu, Settings, X } from 'lucide-react'
 import ThemeToggle from './ThemeToggle'
+import Search from './Search'
+import LanguagePicker from './LanguagePicker'
+import { useI18n } from '../i18n'
 
 const links = [
-  { to: '/', label: 'Home' },
-  { to: '/community', label: 'Community' },
-  { to: '/resources', label: 'Resources' },
-  { to: '/archive', label: 'Archive' },
-  { to: '/dmca', label: 'DMCA / Legal' },
+  { to: '/', key: 'nav.home' },
+  { to: '/archive', key: 'nav.archive' },
+  { to: '/obtainium', key: 'nav.obtainium' },
+  { to: '/resources', key: 'nav.resources' },
+  { to: '/community', key: 'nav.community' },
 ]
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
+  const { t } = useI18n()
 
   return (
     <div className="layout">
@@ -24,7 +28,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <button
             type="button"
             className="menu-toggle"
-            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-label={open ? t('a11y.closeMenu') : t('a11y.openMenu')}
             aria-expanded={open}
             aria-controls="site-menu"
             onClick={() => setOpen((v) => !v)}
@@ -43,9 +47,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
                 onClick={() => setOpen(false)}
               >
-                {link.label}
+                {t(link.key)}
               </NavLink>
             ))}
+            <NavLink
+              to="/settings"
+              className={({ isActive }) => `icon-nav-link${isActive ? ' active' : ''}`}
+              aria-label={t('nav.settings')}
+              title={t('nav.settings')}
+              onClick={() => setOpen(false)}
+            >
+              <Settings size={18} aria-hidden="true" />
+            </NavLink>
+            <Search />
+            <LanguagePicker />
             <ThemeToggle />
           </nav>
         </div>

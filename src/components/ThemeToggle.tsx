@@ -1,33 +1,8 @@
-import { useEffect, useState } from 'react'
 import { Moon, Sun } from 'lucide-react'
-
-type Theme = 'dark' | 'light'
-
-const STORAGE_KEY = 'dantotsu-theme'
-
-function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'dark'
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY) as Theme | null
-    if (saved === 'light' || saved === 'dark') return saved
-  } catch {
-    // ignore
-  }
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-}
+import { useTheme } from '../hooks/useTheme'
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(() => getInitialTheme())
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    try {
-      localStorage.setItem(STORAGE_KEY, theme)
-    } catch {
-      // ignore
-    }
-  }, [theme])
-
+  const [theme, setTheme] = useTheme()
   const next = theme === 'dark' ? 'light' : 'dark'
   const label = `Switch to ${next} theme`
 

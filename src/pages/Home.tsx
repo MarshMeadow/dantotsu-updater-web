@@ -30,6 +30,7 @@ import { formatCount, timeAgo } from '../api/github'
 import { useDiscordStats, useRepoMeta } from '../hooks/useStats'
 import type { Release } from '../api/types'
 import Seo from '../components/Seo'
+import CopyText from '../components/CopyText'
 import { DISCLAIMER, RISK_NOTICE } from '../constants/legal'
 import {
   DANTOTSU_DISCORD,
@@ -331,6 +332,156 @@ export default function Home() {
           </>
         )}
 
+        <section className="section section-raised" aria-labelledby="install-title">
+          <h2 id="install-title" className="section-heading">
+            <Monitor size={22} aria-hidden="true" />
+            How to install
+          </h2>
+          <ol className="install-list">
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Download the latest <strong>.apk</strong> from the release above.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Open the downloaded file. Android may ask you to allow installation from this source.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Enable <strong>Install from unknown sources</strong> for your browser or file manager.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Wait for the installation to finish, then open Dantotsu and sign in with your tracker.
+              </span>
+            </li>
+          </ol>
+          <p className="about-note">
+            Dantotsu is made for <strong>Android</strong>. For Windows, macOS, Linux, or iOS, see the
+            options on the <NavLink to="/resources">resources page</NavLink>.
+          </p>
+        </section>
+
+        <section className="section section-raised" aria-labelledby="obtainium-title">
+          <h2 id="obtainium-title" className="section-heading">
+            <RefreshCw size={22} aria-hidden="true" />
+            Stay updated with Obtainium
+          </h2>
+          <p className="about-text">
+            <a href={OBTAINIUM_GITHUB} target="_blank" rel="noopener noreferrer">Obtainium</a> is a
+            free, open-source Android app that tracks updates directly from sources like GitHub
+            releases — no app store needed. Once set up, it notifies you whenever a new Dantotsu
+            release is published and installs it for you.
+          </p>
+          <ol className="install-list">
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Install Obtainium from its{' '}
+                <a href={`${OBTAINIUM_GITHUB}/releases`} target="_blank" rel="noopener noreferrer">
+                  GitHub releases
+                </a>{' '}
+                page or from F-Droid.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Open Obtainium and tap <strong>Add App</strong>.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Paste the updater repository URL:{' '}
+                <CopyText text={UPDATER_REPO} />
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Confirm the app details — Obtainium picks the APK from each new release and handles
+                updates from then on.
+              </span>
+            </li>
+          </ol>
+          <p className="about-note">
+            Tip: this also works for the community forks — just paste the fork’s GitHub URL instead.
+            Dartotsu even ships a one-tap Obtainium link in its README.
+          </p>
+          <div className="hero-fallbacks">
+            <a className="button" href={OBTAINIUM_ADD} target="_blank" rel="noopener noreferrer">
+              <RefreshCw size={18} />
+              Add to Obtainium
+            </a>
+            <a className="button button-secondary" href={OBTAINIUM_GITHUB} target="_blank" rel="noopener noreferrer">
+              <ExternalLink size={18} />
+              Get Obtainium
+            </a>
+            <NavLink to="/obtainium" className="button button-secondary">
+              <HelpCircle size={18} />
+              Full setup guide
+            </NavLink>
+          </div>
+        </section>
+
+        <section className="section section-raised" aria-labelledby="troubleshoot-title">
+          <h2 id="troubleshoot-title" className="section-heading">
+            <AlertTriangle size={22} aria-hidden="true" />
+            Something not loading?
+          </h2>
+          <p className="about-text">
+            If the app feels empty or content fails to load, run through these checks — they fix
+            almost every issue:
+          </p>
+          <ul className="about-list">
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                <strong>Sign in first.</strong> Most features need a tracker account — connect
+                AniList, MyAnimeList, or Simkl in the app settings. Being signed out is the most
+                common reason nothing loads.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                <strong>Update the app.</strong> Older builds break when sources change. Grab the
+                latest release above, or let Obtainium keep it updated for you.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                <strong>Update your extensions.</strong> Missing or outdated extensions are the other
+                big cause of loading failures — see the{' '}
+                <NavLink to="/extensions">extension setup page</NavLink> for current repos.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                <strong>Still stuck?</strong> Ask in the{' '}
+                <a href={DANTOTSU_DISCORD} target="_blank" rel="noopener noreferrer">
+                  official Discord
+                </a>{' '}
+                or{' '}
+                <a href={DANTOTSU_TELEGRAM} target="_blank" rel="noopener noreferrer">
+                  Telegram
+                </a>{' '}
+                — the community is quick to help.
+              </span>
+            </li>
+          </ul>
+        </section>
+
         <section className="section section-raised" aria-labelledby="community-title">
           <h2 id="community-title" className="section-heading">
             <Users size={22} aria-hidden="true" />
@@ -469,156 +620,6 @@ export default function Home() {
               </article>
             ))}
           </div>
-        </section>
-
-        <section className="section section-raised" aria-labelledby="install-title">
-          <h2 id="install-title" className="section-heading">
-            <Monitor size={22} aria-hidden="true" />
-            How to install
-          </h2>
-          <ol className="install-list">
-            <li>
-              <CheckCircle size={16} aria-hidden="true" />
-              <span>
-                Download the latest <strong>.apk</strong> from the release above.
-              </span>
-            </li>
-            <li>
-              <CheckCircle size={16} aria-hidden="true" />
-              <span>
-                Open the downloaded file. Android may ask you to allow installation from this source.
-              </span>
-            </li>
-            <li>
-              <CheckCircle size={16} aria-hidden="true" />
-              <span>
-                Enable <strong>Install from unknown sources</strong> for your browser or file manager.
-              </span>
-            </li>
-            <li>
-              <CheckCircle size={16} aria-hidden="true" />
-              <span>
-                Wait for the installation to finish, then open Dantotsu and sign in with your tracker.
-              </span>
-            </li>
-          </ol>
-          <p className="about-note">
-            Dantotsu is made for <strong>Android</strong>. For Windows, macOS, Linux, or iOS, see the
-            options on the <NavLink to="/resources">resources page</NavLink>.
-          </p>
-        </section>
-
-        <section className="section section-raised" aria-labelledby="obtainium-title">
-          <h2 id="obtainium-title" className="section-heading">
-            <RefreshCw size={22} aria-hidden="true" />
-            Stay updated with Obtainium
-          </h2>
-          <p className="about-text">
-            <a href={OBTAINIUM_GITHUB} target="_blank" rel="noopener noreferrer">Obtainium</a> is a
-            free, open-source Android app that tracks updates directly from sources like GitHub
-            releases — no app store needed. Once set up, it notifies you whenever a new Dantotsu
-            release is published and installs it for you.
-          </p>
-          <ol className="install-list">
-            <li>
-              <CheckCircle size={16} aria-hidden="true" />
-              <span>
-                Install Obtainium from its{' '}
-                <a href={`${OBTAINIUM_GITHUB}/releases`} target="_blank" rel="noopener noreferrer">
-                  GitHub releases
-                </a>{' '}
-                page or from F-Droid.
-              </span>
-            </li>
-            <li>
-              <CheckCircle size={16} aria-hidden="true" />
-              <span>
-                Open Obtainium and tap <strong>Add App</strong>.
-              </span>
-            </li>
-            <li>
-              <CheckCircle size={16} aria-hidden="true" />
-              <span>
-                Paste the updater repository URL:{' '}
-                <code>https://github.com/itsmechinmoy/dantotsu-updater</code>
-              </span>
-            </li>
-            <li>
-              <CheckCircle size={16} aria-hidden="true" />
-              <span>
-                Confirm the app details — Obtainium picks the APK from each new release and handles
-                updates from then on.
-              </span>
-            </li>
-          </ol>
-          <p className="about-note">
-            Tip: this also works for the community forks — just paste the fork’s GitHub URL instead.
-            Dartotsu even ships a one-tap Obtainium link in its README.
-          </p>
-          <div className="hero-fallbacks">
-            <a className="button" href={OBTAINIUM_ADD} target="_blank" rel="noopener noreferrer">
-              <RefreshCw size={18} />
-              Add to Obtainium
-            </a>
-            <a className="button button-secondary" href={OBTAINIUM_GITHUB} target="_blank" rel="noopener noreferrer">
-              <ExternalLink size={18} />
-              Get Obtainium
-            </a>
-            <NavLink to="/obtainium" className="button button-secondary">
-              <HelpCircle size={18} />
-              Full setup guide
-            </NavLink>
-          </div>
-        </section>
-
-        <section className="section section-raised" aria-labelledby="troubleshoot-title">
-          <h2 id="troubleshoot-title" className="section-heading">
-            <AlertTriangle size={22} aria-hidden="true" />
-            Something not loading?
-          </h2>
-          <p className="about-text">
-            If the app feels empty or content fails to load, run through these checks — they fix
-            almost every issue:
-          </p>
-          <ul className="about-list">
-            <li>
-              <CheckCircle size={16} aria-hidden="true" />
-              <span>
-                <strong>Sign in first.</strong> Most features need a tracker account — connect
-                AniList, MyAnimeList, or Simkl in the app settings. Being signed out is the most
-                common reason nothing loads.
-              </span>
-            </li>
-            <li>
-              <CheckCircle size={16} aria-hidden="true" />
-              <span>
-                <strong>Update the app.</strong> Older builds break when sources change. Grab the
-                latest release above, or let Obtainium keep it updated for you.
-              </span>
-            </li>
-            <li>
-              <CheckCircle size={16} aria-hidden="true" />
-              <span>
-                <strong>Update your extensions.</strong> Missing or outdated extensions are the other
-                big cause of loading failures — see the{' '}
-                <NavLink to="/extensions">extension setup page</NavLink> for current repos.
-              </span>
-            </li>
-            <li>
-              <CheckCircle size={16} aria-hidden="true" />
-              <span>
-                <strong>Still stuck?</strong> Ask in the{' '}
-                <a href={DANTOTSU_DISCORD} target="_blank" rel="noopener noreferrer">
-                  official Discord
-                </a>{' '}
-                or{' '}
-                <a href={DANTOTSU_TELEGRAM} target="_blank" rel="noopener noreferrer">
-                  Telegram
-                </a>{' '}
-                — the community is quick to help.
-              </span>
-            </li>
-          </ul>
         </section>
 
         <section className="section section-raised" aria-labelledby="faq-title">

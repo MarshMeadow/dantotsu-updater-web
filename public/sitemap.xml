@@ -5,7 +5,11 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://dantotsu-updater.example/#/community</loc>
+    <loc>https://dantotsu-updater.example/#/archive</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dantotsu-updater.example/#/obtainium</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -13,12 +17,28 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dantotsu-updater.example/#/archive</loc>
+    <loc>https://dantotsu-updater.example/#/community</loc>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dantotsu-updater.example/#/contributors</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dantotsu-updater.example/#/history</loc>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://dantotsu-updater.example/#/extensions</loc>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dantotsu-updater.example/#/sitemap</loc>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://dantotsu-updater.example/#/settings</loc>
+    <priority>0.3</priority>
   </url>
   <url>
     <loc>https://dantotsu-updater.example/#/dmca</loc>

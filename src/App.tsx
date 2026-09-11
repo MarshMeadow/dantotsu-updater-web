@@ -11,6 +11,9 @@ const Community = lazy(() => import('./pages/Community'))
 const Resources = lazy(() => import('./pages/Resources'))
 const Contributors = lazy(() => import('./pages/Contributors'))
 const Obtainium = lazy(() => import('./pages/Obtainium'))
+const Sitemap = lazy(() => import('./pages/Sitemap'))
+const History = lazy(() => import('./pages/History'))
+const Settings = lazy(() => import('./pages/Settings'))
 const Archive = lazy(() => import('./pages/Archive'))
 const Extensions = lazy(() => import('./pages/Extensions'))
 const Dmca = lazy(() => import('./pages/Dmca'))
@@ -48,6 +51,9 @@ function App() {
           <Route path="/resources" element={<Resources />} />
           <Route path="/contributors" element={<Contributors />} />
           <Route path="/obtainium" element={<Obtainium />} />
+          <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="/archive" element={<Archive />} />
           <Route path="/extensions" element={<Extensions />} />
           <Route path="/dmca" element={<Dmca />} />

@@ -20,6 +20,8 @@ import {
   HelpCircle,
   Monitor,
   CheckCircle,
+  Heart,
+  Puzzle,
 } from 'lucide-react'
 import { fetchLatestRelease, formatBytes, formatDate, getPlatform, getReleaseType } from '../api/release'
 import { fetchRepoPushedAt, timeAgo } from '../api/github'
@@ -36,6 +38,7 @@ import {
   TELEGRAM_POST,
   UPDATER_REPO,
   UPDATER_TELEGRAM,
+  REBELONION_SPONSOR,
 } from '../constants/links'
 
 type Status = { kind: 'loading' } | { kind: 'error'; message: string } | { kind: 'ok'; release: Release }
@@ -404,6 +407,21 @@ export default function Home() {
               <Shield size={22} aria-hidden="true" />
               <span>DMCA / Legal</span>
             </NavLink>
+            <NavLink to="/extensions" className="social-card" role="listitem">
+              <Puzzle size={22} aria-hidden="true" />
+              <span>Extension setup</span>
+            </NavLink>
+            <a
+              href={REBELONION_SPONSOR}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-card sponsor-card"
+              role="listitem"
+            >
+              <Heart size={22} aria-hidden="true" />
+              <span>Sponsor rebelonion</span>
+              <ExternalLink size={14} aria-hidden="true" />
+            </a>
           </div>
         </section>
 
@@ -648,6 +666,32 @@ export default function Home() {
               </span>
             </li>
           </ol>
+        </section>
+
+        <section className="section section-raised" aria-labelledby="sponsor-title">
+          <h2 id="sponsor-title" className="section-heading">
+            <Heart size={22} aria-hidden="true" />
+            Support the original developer
+          </h2>
+          <p>
+            Dantotsu is built and maintained by <strong>rebelonion</strong>. If you enjoy the app and want
+            to support continued development, you can sponsor them directly through GitHub Sponsors.
+          </p>
+          <div className="hero-actions" style={{ marginTop: '1.25rem' }}>
+            <a
+              href={REBELONION_SPONSOR}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button button-large button-glow"
+            >
+              <Heart size={18} />
+              Sponsor rebelonion
+            </a>
+            <NavLink to="/extensions" className="button button-large button-secondary">
+              <Puzzle size={18} />
+              Set up extensions
+            </NavLink>
+          </div>
         </section>
       </div>
     </>

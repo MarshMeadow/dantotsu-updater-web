@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { MessageCircle, GitBranch, ExternalLink, Shield } from 'lucide-react'
+import { MessageCircle, GitBranch, ExternalLink, Shield, Download } from 'lucide-react'
 import { DISCLAIMER, RISK_NOTICE } from '../constants/legal'
 import { DANTOTSU_DISCORD, DANTOTSU_TELEGRAM, UPDATER_TELEGRAM, UPDATER_REPO, DANTOTSU_SOURCE, WEBSITE_REPO } from '../constants/links'
 
@@ -62,6 +62,18 @@ export default function Footer() {
             <ExternalLink size={16} aria-hidden="true" />
             Website GitHub
           </a>
+          <NavLink to="/community" className="footer-link">
+            <MessageCircle size={16} aria-hidden="true" />
+            Community
+          </NavLink>
+          <NavLink to="/resources" className="footer-link">
+            <GitBranch size={16} aria-hidden="true" />
+            Resources
+          </NavLink>
+          <NavLink to="/archive" className="footer-link">
+            <Download size={16} aria-hidden="true" />
+            Archive
+          </NavLink>
           <NavLink to="/dmca" className="footer-link">
             <Shield size={16} aria-hidden="true" />
             DMCA / Legal

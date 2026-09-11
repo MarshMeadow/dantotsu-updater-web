@@ -13,6 +13,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <NavLink to="/" className="nav-link">
               Home
             </NavLink>
+            <NavLink to="/community" className="nav-link">
+              Community
+            </NavLink>
+            <NavLink to="/resources" className="nav-link">
+              Resources
+            </NavLink>
+            <NavLink to="/archive" className="nav-link">
+              Archive
+            </NavLink>
             <NavLink to="/dmca" className="nav-link">
               DMCA / Legal
             </NavLink>

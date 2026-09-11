@@ -5,6 +5,18 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://dantotsu-updater.example/#/community</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dantotsu-updater.example/#/resources</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dantotsu-updater.example/#/archive</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dantotsu-updater.example/#/dmca</loc>
     <priority>0.5</priority>
   </url>

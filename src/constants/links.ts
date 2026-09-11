@@ -8,6 +8,7 @@ export const UPDATER_REPO = 'https://github.com/itsmechinmoy/dantotsu-updater' a
 export const DANTOTSU_SOURCE = 'https://git.rebelonion.dev/rebelonion/Dantotsu/src/branch/dev' as const
 export const WEBSITE_REPO = 'https://github.com/MarshMeadow/dantotsu-updater-web' as const
 export const GITHUB_LATEST_API = 'https://api.github.com/repos/itsmechinmoy/dantotsu-updater/releases/latest' as const
+export const GITHUB_RELEASES_API = 'https://api.github.com/repos/itsmechinmoy/dantotsu-updater/releases?per_page=100' as const
 
 export interface ForkInfo {
   name: string

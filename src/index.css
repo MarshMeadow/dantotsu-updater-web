@@ -146,6 +146,71 @@ button {
   flex: 1;
 }
 
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+  background: var(--surface-2);
+  color: var(--primary-bright);
+}
+
+@media (max-width: 640px) {
+  .header-inner {
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.8rem);
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    animation: slide-down 0.25s ease both;
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .site-nav .nav-link {
+    padding: 0.6rem 0;
+  }
+
+  .site-nav .theme-toggle {
+    align-self: flex-start;
+    margin-top: 0.25rem;
+  }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* Hero */
 .hero {
   position: relative;
@@ -769,8 +834,13 @@ button {
   }
 
   .features,
-  .social-grid {
+  .social-grid,
+  .cards {
     grid-template-columns: 1fr;
+  }
+
+  .page-article {
+    padding: 1.25rem;
   }
 }
 

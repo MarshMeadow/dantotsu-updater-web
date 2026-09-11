@@ -15,9 +15,11 @@
 
 <p align="center">
   <a href="#-features">Features</a> •
+  <a href="#-what-is-dantotsu">About</a> •
+  <a href="#-social-links">Socials</a> •
   <a href="#-getting-started">Getting Started</a> •
   <a href="#-deployment">Deployment</a> •
-  <a href="#-license">License</a>
+  <a href="#-disclaimer--dmca">Disclaimer / DMCA</a>
 </p>
 
 ---
@@ -32,6 +34,34 @@
 - 🚀 **SEO + Open Graph + PWA manifest** — ready to share anywhere.
 - 🛡️ **Security headers & safe links** — CSP, `noopener noreferrer`, and URL allow-lists.
 - 📄 **DMCA / Legal page** — required legal and takedown information.
+
+---
+
+## ❓ What is Dantotsu?
+
+**Dantotsu** is an open-source Android app for tracking and organizing anime and manga. The name means “the best of the best” in Japanese, and the app is built around a clean, modern UI with smooth animations.
+
+What you can do with Dantotsu:
+
+- 📚 Track anime and manga lists, progress, and ratings.
+- 🔎 Browse trending, popular, and currently airing titles.
+- 🔔 Get release notifications and countdowns for upcoming episodes.
+- 🎨 Customize the interface to your taste.
+- 🧩 Use extensions to integrate with the services you prefer.
+
+> **Important:** Dantotsu is a **tracking and management tool**. It does not host, stream, upload, or distribute any anime, manga, or other copyrighted media. Any streaming or reading functionality depends on third-party extensions and services that you choose to use.
+
+---
+
+## 🔗 Social Links
+
+- 🌐 **Official Website:** [dantotsu.app](https://dantotsu.app/)
+- 💬 **Official Discord:** [discord.gg/FpwpYPJAy9](https://discord.gg/FpwpYPJAy9)
+- ✈️ **Official Telegram:** [t.me/+gzBCQExtLQo1YTNh](https://t.me/+gzBCQExtLQo1YTNh)
+- ✈️ **Updater Telegram:** [t.me/dantotsu_updater](https://t.me/dantotsu_updater)
+- 🐙 **Official GitHub:** [github.com/rebelonion/Dantotsu](https://github.com/rebelonion/Dantotsu)
+- 🛠️ **Updater Repository:** [github.com/itsmechinmoy/dantotsu-updater](https://github.com/itsmechinmoy/dantotsu-updater)
+- 🌿 **Source Repository:** [git.rebelonion.dev/rebelonion/Dantotsu/src/branch/dev](https://git.rebelonion.dev/rebelonion/Dantotsu/src/branch/dev)
 
 ---
 
@@ -117,9 +147,18 @@ The project is configured to work with **relative asset paths**, making it easy 
 
 ---
 
-## 📜 License
+## ⚖️ Disclaimer / DMCA
 
-This is an independent community project. It is **not affiliated** with Dantotsu, its developers, or any fork. See the [DMCA / Legal page](public/sitemap.xml) and the in-app disclaimer for full legal text.
+This is an **independent community project** and is not affiliated with, endorsed by, sponsored by, or officially connected to Dantotsu, any Dantotsu fork, its developers, maintainers, contributors, or related projects.
+
+This website does **not** host, upload, modify, repackage, or distribute anime, manga, streaming content, or other copyrighted media. It only provides informational links to publicly available software sources. All trademarks and copyrights belong to their respective owners.
+
+Users download and use any linked software **at their own risk**.
+
+For DMCA / legal information and takedown instructions, see the in-app DMCA page:
+
+- [Vercel DMCA page](https://dantotsu-app-updater.vercel.app/#/dmca)
+- [GitHub Pages DMCA page](https://marshmeadow.github.io/dantotsu-updater-web/#/dmca)
 
 ---
 

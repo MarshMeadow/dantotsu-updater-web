@@ -1,3 +1,5 @@
+import type { Contributor } from './types'
+
 const TRUSTED_API = 'https://api.github.com'
 
 export interface RepoInfo {
@@ -38,6 +40,43 @@ export async function fetchRepoInfo(owner: string, repo: string): Promise<RepoIn
 export async function fetchRepoPushedAt(owner: string, repo: string): Promise<string | null> {
   const info = await fetchRepoInfo(owner, repo)
   return info?.pushedAt ?? null
+}
+
+export async function fetchContributors(
+  owner: string,
+  repo: string,
+): Promise<Contributor[]> {
+  const res = await fetch(`${TRUSTED_API}/repos/${owner}/${repo}/contributors?per_page=100`, {
+    headers: { Accept: 'application/vnd.github+json' },
+  })
+  if (!res.ok) {
+    throw new Error(`GitHub API returned ${res.status}`)
+  }
+  const data: unknown = await res.json()
+  if (!Array.isArray(data)) {
+    throw new Error('Invalid contributors list received.')
+  }
+  const contributors: Contributor[] = []
+  for (const item of data) {
+    if (!item || typeof item !== 'object') continue
+    const c = item as Record<string, unknown>
+    if (
+      typeof c.login === 'string' &&
+      typeof c.avatar_url === 'string' &&
+      c.avatar_url.startsWith('https://avatars.githubusercontent.com/') &&
+      typeof c.html_url === 'string' &&
+      c.html_url.startsWith('https://github.com/') &&
+      typeof c.contributions === 'number'
+    ) {
+      contributors.push({
+        login: c.login,
+        avatar: c.avatar_url,
+        url: c.html_url,
+        contributions: c.contributions,
+      })
+    }
+  }
+  return contributors
 }
 
 export function formatCount(n: number): string {

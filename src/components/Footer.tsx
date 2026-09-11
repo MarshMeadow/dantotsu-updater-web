@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { MessageCircle, GitBranch, ExternalLink, Shield, Download, Lock, Heart, Globe } from 'lucide-react'
+import { MessageCircle, GitBranch, ExternalLink, Shield, Download, Lock, Heart, Globe, Users } from 'lucide-react'
 import { DISCLAIMER, RISK_NOTICE } from '../constants/legal'
 import { DANTOTSU_DISCORD, DANTOTSU_TELEGRAM, UPDATER_TELEGRAM, UPDATER_REPO, DANTOTSU_SOURCE, WEBSITE_REPO, REBELONION_SPONSOR, MARSHMEADOW_WEBSITE, MARSHMEADOW_LIST, MARSHMEADOW_GITHUB } from '../constants/links'
 
@@ -78,6 +78,10 @@ export default function Footer() {
           <NavLink to="/resources" className="footer-link">
             <GitBranch size={16} aria-hidden="true" />
             Resources
+          </NavLink>
+          <NavLink to="/contributors" className="footer-link">
+            <Users size={16} aria-hidden="true" />
+            Contributors
           </NavLink>
           <NavLink to="/archive" className="footer-link">
             <Download size={16} aria-hidden="true" />

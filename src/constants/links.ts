@@ -23,6 +23,38 @@ export const ALTSTORE = 'https://altstore.io' as const
 export const SIDESTORE = 'https://sidestore.io' as const
 export const WAYDROID = 'https://waydro.id' as const
 
+export interface ContributorRepo {
+  label: string
+  owner: string
+  repo: string
+  url: string
+  description: string
+}
+
+export const CONTRIBUTOR_REPOS: ContributorRepo[] = [
+  {
+    label: 'Dantotsu',
+    owner: 'rebelonion',
+    repo: 'Dantotsu',
+    url: 'https://github.com/rebelonion/Dantotsu',
+    description: 'The main Dantotsu Android app.',
+  },
+  {
+    label: 'Dantotsu Updater',
+    owner: 'itsmechinmoy',
+    repo: 'dantotsu-updater',
+    url: 'https://github.com/itsmechinmoy/dantotsu-updater',
+    description: 'The community updater repository that publishes new releases.',
+  },
+  {
+    label: 'This website',
+    owner: 'MarshMeadow',
+    repo: 'dantotsu-updater-web',
+    url: 'https://github.com/MarshMeadow/dantotsu-updater-web',
+    description: 'The source code for this website.',
+  },
+]
+
 export interface ForkInfo {
   name: string
   description: string

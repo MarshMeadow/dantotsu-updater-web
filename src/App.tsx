@@ -9,6 +9,7 @@ import Footer from './components/Footer'
 const Home = lazy(() => import('./pages/Home'))
 const Community = lazy(() => import('./pages/Community'))
 const Resources = lazy(() => import('./pages/Resources'))
+const Contributors = lazy(() => import('./pages/Contributors'))
 const Archive = lazy(() => import('./pages/Archive'))
 const Extensions = lazy(() => import('./pages/Extensions'))
 const Dmca = lazy(() => import('./pages/Dmca'))
@@ -44,6 +45,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/community" element={<Community />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/contributors" element={<Contributors />} />
           <Route path="/archive" element={<Archive />} />
           <Route path="/extensions" element={<Extensions />} />
           <Route path="/dmca" element={<Dmca />} />

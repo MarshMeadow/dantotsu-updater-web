@@ -149,6 +149,7 @@ export default function Community() {
 
         <p>
           <NavLink to="/resources">More useful resources →</NavLink> •{' '}
+          <NavLink to="/contributors">Contributors →</NavLink> •{' '}
           <NavLink to="/">← Back to home</NavLink>
         </p>
       </article>

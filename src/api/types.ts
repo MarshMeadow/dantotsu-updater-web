@@ -13,3 +13,10 @@ export interface Release {
   body: string | null
   assets: Asset[]
 }
+
+export interface Contributor {
+  login: string
+  avatar: string
+  url: string
+  contributions: number
+}

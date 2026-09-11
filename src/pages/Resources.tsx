@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { ExternalLink, GitBranch, Shield, BookOpen, Star } from 'lucide-react'
+import { ExternalLink, GitBranch, Shield, BookOpen, Star, Users } from 'lucide-react'
 import Seo from '../components/Seo'
 import { formatCount } from '../api/github'
 import { useRepoMeta } from '../hooks/useStats'
@@ -226,6 +226,15 @@ export default function Resources() {
                 <div>
                   <h3 className="resource-name">Staying safe online</h3>
                   <p className="resource-desc">Tips for safe downloads, scanning APKs, and general online safety.</p>
+                </div>
+              </div>
+            </NavLink>
+            <NavLink to="/contributors" className="resource-card">
+              <div className="resource-main">
+                <Users size={20} className="resource-icon" aria-hidden="true" />
+                <div>
+                  <h3 className="resource-name">Contributors</h3>
+                  <p className="resource-desc">The people behind Dantotsu, the updater, and this website — and how to join them.</p>
                 </div>
               </div>
             </NavLink>

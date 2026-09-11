@@ -110,7 +110,7 @@ export default function Home() {
     <>
       <Seo
         title="Download the Latest Version"
-        description="Download the latest version of Dantotsu, an open-source anime streaming app. View release notes, forks, and community links."
+        description="Download the latest version of Dantotsu, an open-source anime streaming app for Android. View release notes, forks, and community links."
       />
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero-glow" aria-hidden="true" />
@@ -121,8 +121,8 @@ export default function Home() {
           </h1>
           <p className="hero-subtitle">
             Download the latest version of Dantotsu, an open-source anime
-            streaming application. This is an independent community mirror for
-            the updater repository.
+            streaming application for Android. This is an independent community
+            mirror for the updater repository.
           </p>
 
           <div className="hero-actions">
@@ -161,6 +161,10 @@ export default function Home() {
                   <span className="badge badge-unofficial">
                     <Users size={12} aria-hidden="true" />
                     Community
+                  </span>
+                  <span className="badge badge-unofficial">
+                    <Smartphone size={12} aria-hidden="true" />
+                    Android
                   </span>
                   <span className={`badge ${getReleaseType(status.release.tag_name, status.release.body).className}`}>
                     {getReleaseType(status.release.tag_name, status.release.body).type}
@@ -501,6 +505,10 @@ export default function Home() {
               </span>
             </li>
           </ol>
+          <p className="about-note">
+            Dantotsu is made for <strong>Android</strong>. For Windows, macOS, Linux, or iOS, see the
+            options on the <NavLink to="/resources">resources page</NavLink>.
+          </p>
         </section>
 
         <section className="section section-raised" aria-labelledby="faq-title">

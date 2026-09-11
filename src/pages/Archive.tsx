@@ -90,13 +90,14 @@ export default function Archive() {
     <div className="container">
       <Seo
         title="Archive - Dantotsu Updater"
-        description="Browse older versions and releases of the Dantotsu updater."
+        description="Browse older versions and Android releases of the Dantotsu updater."
       />
       <article className="page-article">
         <h1>Release Archive</h1>
         <p>
           Browse older releases from the community updater repository. Click any release to view its
-          files on GitHub.
+          files on GitHub. Dantotsu is an Android app — each release provides Android <code>.apk</code>{' '}
+          packages.
         </p>
 
         {status.kind === 'loading' && (

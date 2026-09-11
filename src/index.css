@@ -2216,17 +2216,52 @@ code {
   color: var(--primary-bright);
 }
 
-@media (min-width: 641px) and (max-width: 900px) {
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 900px) {
   .search-trigger-label,
-  .search-trigger .search-kbd,
+  .search-trigger .search-kbd {
+    display: none;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
   .lang-current {
     display: none;
   }
 }
 
 @media (max-width: 640px) {
+  .search-trigger {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    justify-content: center;
+  }
+
   .search-overlay {
-    padding-top: 8vh;
+    padding: max(6vh, env(safe-area-inset-top)) 0.75rem 0.75rem;
+  }
+
+  .search-dialog {
+    width: 100%;
+  }
+
+  .search-input {
+    font-size: 16px;
+  }
+
+  .search-results {
+    max-height: min(55dvh, 400px);
+  }
+
+  .search-result {
+    padding: 0.8rem 0.7rem;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .search-result-desc {

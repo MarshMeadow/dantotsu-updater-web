@@ -82,6 +82,13 @@ export const SEARCH_INDEX: SearchItem[] = [
     section: 'resources-platforms-title',
   },
   {
+    title: 'Android TV & Fire TV',
+    description: 'Sideload the same APK on Android TV, Google TV and Fire TV devices.',
+    keywords: ['android tv', 'fire tv', 'tv', 'sideload', 'downloader', 'send files to tv', 'google tv', 'shield'],
+    to: '/resources',
+    section: 'resources-tv-title',
+  },
+  {
     title: 'Community',
     description: 'Join the Discord (~20k members) and Telegram channels.',
     keywords: ['community', 'discord', 'telegram', 'chat', 'support', 'members'],

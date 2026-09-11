@@ -25,16 +25,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <NavLink to="/" className="logo" aria-label="Dantotsu Updater home">
             Dantotsu Updater
           </NavLink>
-          <button
-            type="button"
-            className="menu-toggle"
-            aria-label={open ? t('a11y.closeMenu') : t('a11y.openMenu')}
-            aria-expanded={open}
-            aria-controls="site-menu"
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X size={24} /> : <Menu size={24} />}
-          </button>
           <nav
             id="site-menu"
             className={`site-nav ${open ? 'is-open' : ''}`}
@@ -59,10 +49,22 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             >
               <Settings size={18} aria-hidden="true" />
             </NavLink>
-            <Search />
             <LanguagePicker />
             <ThemeToggle />
           </nav>
+          <div className="header-actions">
+            <Search />
+            <button
+              type="button"
+              className="menu-toggle"
+              aria-label={open ? t('a11y.closeMenu') : t('a11y.openMenu')}
+              aria-expanded={open}
+              aria-controls="site-menu"
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </header>
       <main className="main-content" id="main">

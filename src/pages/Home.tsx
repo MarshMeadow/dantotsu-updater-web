@@ -677,6 +677,15 @@ export default function Home() {
                 <NavLink to="/resources">resources page</NavLink> for all options.
               </p>
             </details>
+            <details className="faq-item">
+              <summary>Can I use Dantotsu on Android TV or Fire TV?</summary>
+              <p>
+                Yes — the same APK declares Android TV support, so you can sideload it on
+                Android TV, Google TV, Fire TV, or TV boxes using tools like Downloader or
+                Send Files to TV. The interface is touch-first, so a Bluetooth mouse helps.
+                See the <NavLink to="/resources">resources page</NavLink> for the full steps.
+              </p>
+            </details>
           </div>
         </section>
 

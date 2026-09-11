@@ -4,6 +4,7 @@ import Seo from '../components/Seo'
 import { formatCount } from '../api/github'
 import { useRepoMeta } from '../hooks/useStats'
 import {
+  AFTV_DOWNLOADER,
   ALTSTORE,
   BLUESTACKS,
   DANTOTSU_GITHUB,
@@ -11,6 +12,7 @@ import {
   DANTOTSU_WEBSITE,
   DARTOTSU_RELEASES,
   LDPLAYER,
+  SEND_FILES_TO_TV,
   SIDESTORE,
   UPDATER_REPO,
   WAYDROID,
@@ -82,6 +84,21 @@ const PLATFORMS = [
     url: SIDESTORE,
     description:
       'An alternative iOS sideloading app for installing unsigned .ipa files such as the Dartotsu iOS build.',
+  },
+]
+
+const TV = [
+  {
+    name: 'Downloader (AFTVnews)',
+    url: AFTV_DOWNLOADER,
+    description:
+      'The easiest way to sideload on Fire TV and Android TV. Install it from your TV’s app store, then enter the updater’s GitHub releases URL to fetch the APK.',
+  },
+  {
+    name: 'Send Files to TV',
+    url: SEND_FILES_TO_TV,
+    description:
+      'Sends the APK from your phone or PC to your Android TV over the local network — download on your phone here, then beam it to the TV.',
   },
 ]
 
@@ -205,6 +222,44 @@ export default function Resources() {
             Windows Subsystem for Android was discontinued by Microsoft in March 2025 and is no
             longer available. Emulators and sideloading tools are third-party software — only
             download them from their official sites.
+          </p>
+        </section>
+
+        <section aria-labelledby="resources-tv-title">
+          <h2 id="resources-tv-title">Android TV & Fire TV</h2>
+          <p>
+            The Dantotsu APK declares Android TV support, so the same release you download
+            here can run on Android TV, Google TV, Fire TV devices (Fire OS is Android), and
+            TV boxes. There is no TV-specific fork — you sideload the regular APK:
+          </p>
+          <ol className="install-list">
+            <li>On your TV, enable <strong>installing unknown apps</strong> for your file tool.</li>
+            <li>Get the APK onto the TV with one of the tools below (pick the <strong>universal</strong> build if unsure).</li>
+            <li>Install it, open Dantotsu, and sign in as usual.</li>
+          </ol>
+          <div className="resource-list">
+            {TV.map((item) => (
+              <a
+                key={item.name}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="resource-card"
+              >
+                <div className="resource-main">
+                  <ExternalLink size={20} className="resource-icon" aria-hidden="true" />
+                  <div>
+                    <h3 className="resource-name">{item.name}</h3>
+                    <p className="resource-desc">{item.description}</p>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+          <p>
+            Heads-up: the interface is designed for touchscreens, so some menus may need a
+            Bluetooth mouse or a mouse-toggle app on the remote. Extensions and playback
+            work the same as on a phone.
           </p>
         </section>
 

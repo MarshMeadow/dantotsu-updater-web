@@ -1,9 +1,36 @@
 import { useEffect, useState } from 'react'
-import { Lock, Unlock, KeyRound, CheckCircle, AlertTriangle } from 'lucide-react'
+import { Lock, Unlock, KeyRound, CheckCircle, AlertTriangle, ExternalLink } from 'lucide-react'
 import Seo from '../components/Seo'
 import { EXTENSIONS_KEY } from '../constants/auth'
 
 const STORAGE_KEY = 'dantotsu-ext-unlocked'
+
+const EXTENSION_SOURCES = [
+  {
+    name: 'Aniyomi Extensions',
+    url: 'https://github.com/aniyomiorg/aniyomi-extensions',
+    description: 'Official extension catalog for the Aniyomi fork. Some extensions are archived, but the repo is a common reference.',
+    tags: ['anime', 'manga'],
+  },
+  {
+    name: 'Keiyoushi Extensions',
+    url: 'https://keiyoushi.github.io/',
+    description: 'A popular community extension repo for Mihon, Tachiyomi, and compatible forks.',
+    tags: ['manga', 'anime'],
+  },
+  {
+    name: 'Yuzono / Aniyomi Extensions',
+    url: 'https://yuzono.github.io/extensions-aniyomi/',
+    description: 'Extension catalog for Aniyomi and Anikku users.',
+    tags: ['anime', 'manga'],
+  },
+  {
+    name: 'Tachiyomi Extensions (archived)',
+    url: 'https://github.com/tachiyomiorg/extensions',
+    description: 'The original Tachiyomi extension catalog. Archived, but still useful for reference and older forks.',
+    tags: ['manga', 'archived'],
+  },
+]
 
 function isUnlocked(): boolean {
   try {
@@ -172,6 +199,40 @@ export default function Extensions() {
             Some extensions or repos may ask you to restart Dantotsu before they appear. Close the app
             fully and reopen it if content does not show up.
           </p>
+        </section>
+
+        <section aria-labelledby="ext-sources">
+          <h2 id="ext-sources">Known extension sources</h2>
+          <p>
+            These are well-known community sources for anime and manga extensions. Always verify a repo
+            before adding it to your app.
+          </p>
+          <div className="resource-list">
+            {EXTENSION_SOURCES.map((source) => (
+              <a
+                key={source.name}
+                href={source.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="resource-card"
+              >
+                <div className="resource-main">
+                  <ExternalLink size={20} className="resource-icon" aria-hidden="true" />
+                  <div>
+                    <h3 className="resource-name">{source.name}</h3>
+                    <p className="resource-desc">{source.description}</p>
+                    <div className="resource-tags">
+                      {source.tags.map((tag) => (
+                        <span key={tag} className="resource-tag">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
         </section>
 
         <section aria-labelledby="ext-safety">

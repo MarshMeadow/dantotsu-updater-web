@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Lock, Unlock, KeyRound, CheckCircle, AlertTriangle, ExternalLink } from 'lucide-react'
+import { Lock, Unlock, KeyRound, CheckCircle, AlertTriangle, ExternalLink, Eye, EyeOff } from 'lucide-react'
 import Seo from '../components/Seo'
 import { EXTENSIONS_KEY } from '../constants/auth'
 
@@ -32,6 +32,19 @@ const EXTENSION_SOURCES = [
   },
 ]
 
+const QUICK_URLS = [
+  {
+    name: 'Keiyoushi repo index (Mihon/Tachiyomi style)',
+    url: 'https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json',
+    tags: ['mihon', 'tachiyomi'],
+  },
+  {
+    name: 'MiguelMA3 filtered repo index',
+    url: 'https://raw.githubusercontent.com/MiguelMA3/mihon-extensions/mypack/index.min.json',
+    tags: ['mihon', 'filtered'],
+  },
+]
+
 function isUnlocked(): boolean {
   try {
     return localStorage.getItem(STORAGE_KEY) === 'true'
@@ -43,8 +56,22 @@ function isUnlocked(): boolean {
 export default function Extensions() {
   const [status, setStatus] = useState<'locked' | 'unlocked'>(isUnlocked() ? 'unlocked' : 'locked')
   const [input, setInput] = useState('')
+  const [showKey, setShowKey] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [hintOpen, setHintOpen] = useState(false)
+  const [copied, setCopied] = useState<string | null>(null)
+
+  const copyUrl = (url: string) => {
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard
+        .writeText(url)
+        .then(() => {
+          setCopied(url)
+          window.setTimeout(() => setCopied((c) => (c === url ? null : c)), 2000)
+        })
+        .catch(() => setCopied(null))
+    }
+  }
 
   useEffect(() => {
     setStatus(isUnlocked() ? 'unlocked' : 'locked')
@@ -93,18 +120,29 @@ export default function Extensions() {
             <label htmlFor="extensions-key" className="sr-only">
               Extensions key
             </label>
-            <input
-              id="extensions-key"
-              type="password"
-              className="key-gate-input"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') tryUnlock()
-              }}
-              placeholder="Enter key"
-              autoFocus
-            />
+            <div className="key-gate-input-wrap">
+              <input
+                id="extensions-key"
+                type={showKey ? 'text' : 'password'}
+                className="key-gate-input"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') tryUnlock()
+                }}
+                placeholder="Enter key"
+                autoFocus
+              />
+              <button
+                type="button"
+                className="key-gate-eye"
+                onClick={() => setShowKey((v) => !v)}
+                aria-label={showKey ? 'Hide key' : 'Show key'}
+                aria-pressed={showKey}
+              >
+                {showKey ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
             <button type="button" className="button button-large" onClick={tryUnlock}>
               <KeyRound size={18} />
               Unlock
@@ -233,6 +271,51 @@ export default function Extensions() {
               </a>
             ))}
           </div>
+        </section>
+
+        <section aria-labelledby="ext-quick">
+          <h2 id="ext-quick">Quick-add JSON links</h2>
+          <p>
+            For apps that accept a raw repo index URL, click the copy button next to the link and paste it
+            into your app&apos;s extension repository settings.
+          </p>
+          <div className="quick-list">
+            {QUICK_URLS.map((item) => (
+              <div key={item.name} className="quick-row">
+                <div className="quick-info">
+                  <h3 className="quick-name">{item.name}</h3>
+                  <div className="quick-tags">
+                    {item.tags.map((tag) => (
+                      <span key={tag} className="resource-tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="quick-copy">
+                  <input
+                    type="text"
+                    readOnly
+                    value={item.url}
+                    className="quick-input"
+                    aria-label={`${item.name} URL`}
+                    onFocus={(e) => e.target.select()}
+                  />
+                  <button
+                    type="button"
+                    className="button"
+                    onClick={() => copyUrl(item.url)}
+                  >
+                    {copied === item.url ? 'Copied!' : 'Copy'}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="quick-note">
+            Note: Aniyomi usually installs extensions as APK files or through its own catalog. The JSON
+            links above are for Mihon/Tachiyomi-style repo systems.
+          </p>
         </section>
 
         <section aria-labelledby="ext-safety">

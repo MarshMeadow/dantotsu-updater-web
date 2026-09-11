@@ -1422,9 +1422,51 @@ code {
   transition: border-color var(--transition);
 }
 
+.key-gate-input-wrap {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.key-gate-input {
+  width: 100%;
+  padding: 0.85rem 2.75rem 0.85rem 0.85rem;
+  margin-bottom: 0;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 1rem;
+  text-align: center;
+  transition: border-color var(--transition);
+}
+
 .key-gate-input:focus {
   border-color: var(--primary);
   outline: none;
+}
+
+.key-gate-eye {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.key-gate-eye:hover,
+.key-gate-eye:focus {
+  color: var(--primary-bright);
 }
 
 .key-gate-error {
@@ -1461,6 +1503,68 @@ code {
 .button-text:hover,
 .button-text:focus {
   color: var(--text);
+}
+
+.quick-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.quick-row {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.quick-info {
+  flex: 1;
+  min-width: 12rem;
+}
+
+.quick-name {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.quick-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.quick-copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 18rem;
+}
+
+.quick-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.65rem 0.75rem;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+}
+
+.quick-note {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 1rem;
 }
 
 /* Light theme */

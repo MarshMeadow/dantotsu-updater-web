@@ -34,6 +34,8 @@
 - 📱 **Fully responsive** — looks great on desktop, tablet, and mobile.
 - 🔒 **Human verification gate** — one-time simple puzzle on first visit.
 - 🍴 **Maintained forks list** — live "last updated" times from GitHub.
+- 🔁 **Multi-source archive** — the release archive automatically falls back across mirrors and proxies if a source fails.
+- ⭐ **Live repo & community stats** — GitHub star counts on repo cards and a live Discord member count.
 - 🚀 **SEO + Open Graph + PWA manifest** — ready to share anywhere.
 - 🛡️ **Security headers & safe links** — CSP, `noopener noreferrer`, and URL allow-lists.
 - 📄 **DMCA / Legal page** — required legal and takedown information.
@@ -62,7 +64,8 @@ What you can do with Dantotsu:
 2. **Validates everything.** The site checks that release and download URLs come from trusted GitHub domains. It strips control characters and ignores any malformed data.
 3. **Shows safe download links.** APKs are not hosted or modified here. The download buttons link directly to GitHub's file servers, so you get the exact file published by the updater repo.
 4. **Live fork information.** The “Maintained community forks” section asks GitHub for each fork’s latest push date, so you can see which projects are still active.
-5. **Built for privacy.** No tracking, analytics, ads, or API keys. The verification gate stores a simple token in your browser for 7 days, and your theme choice is saved locally.
+5. **Archive fallbacks.** The archive page tries the GitHub API first, then CORS proxies and mirror repositories, and reports which source served the data.
+6. **Built for privacy.** No tracking, analytics, ads, or API keys. The verification gate stores a simple token in your browser for 7 days, and your theme choice is saved locally.
 
 ---
 
@@ -79,7 +82,7 @@ Dantotsu is **Android-only** — there is no official Windows, macOS, Linux, or 
 
 ---
 
-## �️ Staying Safe
+## 🛡️ Staying Safe
 
 - **Only download from sources you trust.** Stick to official or well-known community repositories and double-check URLs.
 - **Scan files before installing.** Upload APKs to [VirusTotal](https://www.virustotal.com) to scan with dozens of antivirus engines, or scan with your installed antivirus.
@@ -97,7 +100,7 @@ Dantotsu is **Android-only** — there is no official Windows, macOS, Linux, or 
 
 ---
 
-## �🔗 Social Links
+## 🔗 Social Links
 
 - 🌐 **Official Website:** [dantotsu.app](https://dantotsu.app/)
 - 💬 **Official Discord:** [discord.gg/FpwpYPJAy9](https://discord.gg/FpwpYPJAy9)

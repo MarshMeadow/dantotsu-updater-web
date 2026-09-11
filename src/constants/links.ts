@@ -13,6 +13,8 @@ export const MARSHMEADOW_LIST = 'https://n3k0s-index.netlify.app/list' as const
 export const MARSHMEADOW_GITHUB = 'https://github.com/MarshMeadow' as const
 export const GITHUB_LATEST_API = 'https://api.github.com/repos/itsmechinmoy/dantotsu-updater/releases/latest' as const
 export const GITHUB_RELEASES_API = 'https://api.github.com/repos/itsmechinmoy/dantotsu-updater/releases?per_page=100' as const
+export const MIRROR_RELEASES_API = 'https://api.github.com/repos/itsmechinmoy/Dantotsu/releases?per_page=100' as const
+export const UPSTREAM_RELEASES_API = 'https://api.github.com/repos/rebelonion/Dantotsu/releases?per_page=100' as const
 export const DARTOTSU_REPO = 'https://github.com/aayush2622/Dartotsu' as const
 export const DARTOTSU_RELEASES = 'https://github.com/aayush2622/Dartotsu/releases' as const
 export const BLUESTACKS = 'https://www.bluestacks.com' as const

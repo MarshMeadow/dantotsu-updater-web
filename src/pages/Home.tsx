@@ -22,9 +22,11 @@ import {
   CheckCircle,
   Heart,
   Puzzle,
+  Star,
 } from 'lucide-react'
 import { fetchLatestRelease, formatBytes, formatDate, getPlatform, getReleaseType } from '../api/release'
-import { fetchRepoPushedAt, timeAgo } from '../api/github'
+import { formatCount, timeAgo } from '../api/github'
+import { useDiscordStats, useRepoMeta } from '../hooks/useStats'
 import type { Release } from '../api/types'
 import Seo from '../components/Seo'
 import { DISCLAIMER, RISK_NOTICE } from '../constants/legal'
@@ -43,6 +45,9 @@ import {
 } from '../constants/links'
 
 type Status = { kind: 'loading' } | { kind: 'error'; message: string } | { kind: 'ok'; release: Release }
+
+const FORK_URLS = MAINTAINED_FORKS.map((fork) => fork.url)
+const DISCORD_INVITE_CODE = DANTOTSU_DISCORD.split('/').pop() ?? ''
 
 const platformIcon = (name: string) => {
   const lower = name.toLowerCase()
@@ -79,32 +84,8 @@ export default function Home() {
     return (universal ?? firstApk) ?? null
   }, [status])
 
-  const [forkPushed, setForkPushed] = useState<Record<string, string | null>>({})
-
-  useEffect(() => {
-    let active = true
-    const load = async () => {
-      const next: Record<string, string | null> = {}
-      await Promise.all(
-        MAINTAINED_FORKS.map(async (fork) => {
-          try {
-            const url = new URL(fork.url)
-            const [, owner, repo] = url.pathname.split('/')
-            if (!owner || !repo) return
-            const pushed = await fetchRepoPushedAt(owner, repo)
-            if (active) next[fork.url] = pushed
-          } catch {
-            // ignore per-fork failures
-          }
-        })
-      )
-      if (active) setForkPushed(next)
-    }
-    load()
-    return () => {
-      active = false
-    }
-  }, [])
+  const forkMeta = useRepoMeta(FORK_URLS)
+  const discord = useDiscordStats(DISCORD_INVITE_CODE)
 
   return (
     <>
@@ -361,7 +342,14 @@ export default function Home() {
               role="listitem"
             >
               <MessageCircle size={22} aria-hidden="true" />
-              <span>Official Discord</span>
+              <span className="social-card-text">
+                <span>Official Discord</span>
+                <span className="social-sub">
+                  {discord
+                    ? `${formatCount(discord.members)} members · ${formatCount(discord.online)} online`
+                    : 'Almost 20,000 members'}
+                </span>
+              </span>
               <ExternalLink size={14} aria-hidden="true" />
             </a>
             <a
@@ -445,9 +433,15 @@ export default function Home() {
                 <h3>{fork.name}</h3>
                 <p className="fork-author">
                   by {fork.author}
-                  {forkPushed[fork.url] && (
+                  {forkMeta[fork.url]?.stars != null && (
+                    <span className="fork-stars">
+                      <Star size={12} aria-hidden="true" />
+                      {formatCount(forkMeta[fork.url]!.stars!)}
+                    </span>
+                  )}
+                  {forkMeta[fork.url]?.pushedAt && (
                     <span className="fork-updated">
-                      updated {timeAgo(forkPushed[fork.url]!)}
+                      updated {timeAgo(forkMeta[fork.url]!.pushedAt!)}
                     </span>
                   )}
                 </p>

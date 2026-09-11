@@ -1,10 +1,72 @@
 import type { Asset, Release } from './types'
-import { GITHUB_LATEST_API, GITHUB_RELEASES_API } from '../constants/links'
+import {
+  GITHUB_LATEST_API,
+  GITHUB_RELEASES_API,
+  MIRROR_RELEASES_API,
+  UPSTREAM_RELEASES_API,
+} from '../constants/links'
 
 const TRUSTED_URL_PREFIXES = [
   'https://github.com/',
   'https://objects.githubusercontent.com/',
 ] as const
+
+const UPDATER_RELEASES_PREFIX = 'https://github.com/itsmechinmoy/dantotsu-updater/releases/'
+
+export interface ReleaseSource {
+  name: string
+  url: string
+  releaseUrlPrefix: string
+}
+
+export const RELEASE_SOURCES: ReleaseSource[] = [
+  {
+    name: 'GitHub API',
+    url: GITHUB_RELEASES_API,
+    releaseUrlPrefix: UPDATER_RELEASES_PREFIX,
+  },
+  {
+    name: 'GitHub API via AllOrigins',
+    url: `https://api.allorigins.win/raw?url=${encodeURIComponent(GITHUB_RELEASES_API)}`,
+    releaseUrlPrefix: UPDATER_RELEASES_PREFIX,
+  },
+  {
+    name: 'GitHub API via CodeTabs',
+    url: `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(GITHUB_RELEASES_API)}`,
+    releaseUrlPrefix: UPDATER_RELEASES_PREFIX,
+  },
+  {
+    name: 'Community mirror (itsmechinmoy/Dantotsu)',
+    url: MIRROR_RELEASES_API,
+    releaseUrlPrefix: 'https://github.com/itsmechinmoy/Dantotsu/releases/',
+  },
+  {
+    name: 'Official Dantotsu repository',
+    url: UPSTREAM_RELEASES_API,
+    releaseUrlPrefix: 'https://github.com/rebelonion/Dantotsu/releases/',
+  },
+]
+
+export interface SourceFailure {
+  source: string
+  error: string
+}
+
+export interface ReleasesResult {
+  releases: Release[]
+  source: ReleaseSource
+  failures: SourceFailure[]
+}
+
+export class ReleaseSourcesError extends Error {
+  failures: SourceFailure[]
+
+  constructor(failures: SourceFailure[]) {
+    super(`All ${failures.length} release sources failed.`)
+    this.name = 'ReleaseSourcesError'
+    this.failures = failures
+  }
+}
 
 function isTrustedUrl(url: string): boolean {
   return TRUSTED_URL_PREFIXES.some((prefix) => url.startsWith(prefix))
@@ -35,7 +97,7 @@ function validateAsset(item: unknown): Asset | null {
   return null
 }
 
-function validateRelease(data: unknown): Release {
+function validateRelease(data: unknown, releaseUrlPrefix: string): Release {
   if (!data || typeof data !== 'object') {
     throw new Error('Invalid release data received.')
   }
@@ -50,7 +112,7 @@ function validateRelease(data: unknown): Release {
     throw new Error('Release response is missing required fields.')
   }
 
-  if (!release.html_url.startsWith('https://github.com/itsmechinmoy/dantotsu-updater/releases/')) {
+  if (!release.html_url.startsWith(releaseUrlPrefix)) {
     throw new Error('Release URL does not come from the expected repository.')
   }
 
@@ -84,18 +146,18 @@ export async function fetchLatestRelease(): Promise<Release> {
   }
 
   const data: unknown = await res.json()
-  return validateRelease(data)
+  return validateRelease(data, UPDATER_RELEASES_PREFIX)
 }
 
-export async function fetchAllReleases(): Promise<Release[]> {
-  const res = await fetch(GITHUB_RELEASES_API, {
+async function fetchReleasesFromSource(source: ReleaseSource): Promise<Release[]> {
+  const res = await fetch(source.url, {
     headers: {
       Accept: 'application/vnd.github+json',
     },
   })
 
   if (!res.ok) {
-    throw new Error(`GitHub API returned ${res.status}`)
+    throw new Error(`HTTP ${res.status}`)
   }
 
   const data: unknown = await res.json()
@@ -106,13 +168,38 @@ export async function fetchAllReleases(): Promise<Release[]> {
   const releases: Release[] = []
   for (const item of data) {
     try {
-      releases.push(validateRelease(item))
+      releases.push(validateRelease(item, source.releaseUrlPrefix))
     } catch {
       // Skip malformed releases.
     }
   }
 
+  if (releases.length === 0) {
+    throw new Error('No valid releases found.')
+  }
+
   return releases
+}
+
+export async function fetchAllReleases(
+  onAttempt?: (source: ReleaseSource) => void,
+): Promise<ReleasesResult> {
+  const failures: SourceFailure[] = []
+
+  for (const source of RELEASE_SOURCES) {
+    onAttempt?.(source)
+    try {
+      const releases = await fetchReleasesFromSource(source)
+      return { releases, source, failures }
+    } catch (err) {
+      failures.push({
+        source: source.name,
+        error: err instanceof Error ? err.message : 'Unknown error',
+      })
+    }
+  }
+
+  throw new ReleaseSourcesError(failures)
 }
 
 export function formatBytes(bytes: number): string {

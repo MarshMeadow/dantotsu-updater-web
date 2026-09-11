@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom'
-import { ExternalLink, GitBranch, Shield, BookOpen } from 'lucide-react'
+import { ExternalLink, GitBranch, Shield, BookOpen, Star } from 'lucide-react'
 import Seo from '../components/Seo'
+import { formatCount } from '../api/github'
+import { useRepoMeta } from '../hooks/useStats'
 import {
   ALTSTORE,
   BLUESTACKS,
@@ -83,7 +85,14 @@ const PLATFORMS = [
   },
 ]
 
+const REPO_URLS = [
+  ...OFFICIAL.map((item) => item.url),
+  ...MAINTAINED_FORKS.map((fork) => fork.url),
+]
+
 export default function Resources() {
+  const repoMeta = useRepoMeta(REPO_URLS)
+
   return (
     <div className="container">
       <Seo
@@ -113,6 +122,12 @@ export default function Resources() {
                   <div>
                     <h3 className="resource-name">{item.name}</h3>
                     <p className="resource-desc">{item.description}</p>
+                    {repoMeta[item.url]?.stars != null && (
+                      <span className="repo-stars">
+                        <Star size={12} aria-hidden="true" />
+                        {formatCount(repoMeta[item.url]!.stars!)} stars
+                      </span>
+                    )}
                   </div>
                 </div>
               </a>
@@ -140,6 +155,12 @@ export default function Resources() {
                   <div>
                     <h3 className="resource-name">{fork.name}</h3>
                     <p className="resource-desc">{fork.description}</p>
+                    {repoMeta[fork.url]?.stars != null && (
+                      <span className="repo-stars">
+                        <Star size={12} aria-hidden="true" />
+                        {formatCount(repoMeta[fork.url]!.stars!)} stars
+                      </span>
+                    )}
                     <div className="resource-tags">
                       {fork.tags.map((tag) => (
                         <span key={tag} className="resource-tag">

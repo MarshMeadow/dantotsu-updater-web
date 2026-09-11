@@ -1,9 +1,17 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Download, Smartphone, Package, File, Calendar, ExternalLink, AlertTriangle } from 'lucide-react'
+import { Download, Smartphone, Package, File, Calendar, ExternalLink, AlertTriangle, RefreshCw, Server } from 'lucide-react'
 import Seo from '../components/Seo'
 import type { Release } from '../api/types'
-import { fetchAllReleases, formatBytes, formatDate, getPlatform, getReleaseType } from '../api/release'
+import {
+  fetchAllReleases,
+  formatBytes,
+  formatDate,
+  getPlatform,
+  getReleaseType,
+  ReleaseSourcesError,
+} from '../api/release'
+import type { SourceFailure } from '../api/release'
 
 const platformIcon = (name: string) => {
   const lower = name.toLowerCase()
@@ -12,7 +20,10 @@ const platformIcon = (name: string) => {
   return <File size={20} />
 }
 
-type Status = { kind: 'loading' } | { kind: 'error'; message: string } | { kind: 'ok'; releases: Release[] }
+type Status =
+  | { kind: 'loading'; attempt?: string }
+  | { kind: 'error'; failures: SourceFailure[] }
+  | { kind: 'ok'; releases: Release[]; sourceName: string; usedFallback: boolean }
 
 const PER_PAGE = 5
 
@@ -55,28 +66,44 @@ function Pagination({
 export default function Archive() {
   const [status, setStatus] = useState<Status>({ kind: 'loading' })
   const [page, setPage] = useState(1)
+  const [reloadKey, setReloadKey] = useState(0)
 
   useEffect(() => {
     let active = true
-    fetchAllReleases()
-      .then((releases) => {
-        if (active) {
-          setStatus({ kind: 'ok', releases })
-          setPage(1)
-        }
-      })
-      .catch((err) => {
+    const load = async () => {
+      try {
+        const result = await fetchAllReleases((source) => {
+          if (active) setStatus({ kind: 'loading', attempt: source.name })
+        })
         if (active) {
           setStatus({
-            kind: 'error',
-            message: err instanceof Error ? err.message : 'Could not load releases.',
+            kind: 'ok',
+            releases: result.releases,
+            sourceName: result.source.name,
+            usedFallback: result.failures.length > 0,
           })
+          setPage(1)
         }
-      })
+      } catch (err) {
+        if (active) {
+          const failures =
+            err instanceof ReleaseSourcesError
+              ? err.failures
+              : [
+                  {
+                    source: 'Release sources',
+                    error: err instanceof Error ? err.message : 'Could not load releases.',
+                  },
+                ]
+          setStatus({ kind: 'error', failures })
+        }
+      }
+    }
+    load()
     return () => {
       active = false
     }
-  }, [])
+  }, [reloadKey])
 
   const pageReleases =
     status.kind === 'ok'
@@ -97,20 +124,42 @@ export default function Archive() {
         <p>
           Browse older releases from the community updater repository. Click any release to view its
           files on GitHub. Dantotsu is an Android app — each release provides Android <code>.apk</code>{' '}
-          packages.
+          packages. Releases are fetched from several sources — if one fails, the next is tried
+          automatically.
         </p>
 
         {status.kind === 'loading' && (
-          <p role="status" className="state">
-            Loading archive…
-          </p>
+          <div className="archive-loading" role="status" aria-live="polite">
+            <div className="spinner" aria-hidden="true" />
+            <p key={status.attempt ?? 'start'} className="archive-loading-text">
+              {status.attempt ? `Trying ${status.attempt}…` : 'Loading archive…'}
+            </p>
+          </div>
         )}
 
         {status.kind === 'error' && (
-          <div className="error-card" role="alert">
+          <div className="error-card archive-error" role="alert">
             <AlertTriangle size={32} className="error-icon" />
             <h2 className="error-title">Couldn’t load archive</h2>
-            <p className="error-message">{status.message}</p>
+            <p className="error-message">
+              All release sources failed. Check your connection or try again.
+            </p>
+            <ul className="error-sources">
+              {status.failures.map((failure) => (
+                <li key={failure.source}>
+                  <span className="error-source-name">{failure.source}</span>
+                  <span className="error-source-detail">{failure.error}</span>
+                </li>
+              ))}
+            </ul>
+            <button
+              type="button"
+              className="button"
+              onClick={() => setReloadKey((key) => key + 1)}
+            >
+              <RefreshCw size={16} aria-hidden="true" />
+              Try again
+            </button>
           </div>
         )}
 
@@ -122,6 +171,11 @@ export default function Archive() {
 
         {status.kind === 'ok' && status.releases.length > 0 && (
           <>
+            <p className={`archive-source${status.usedFallback ? ' is-fallback' : ''}`}>
+              <Server size={14} aria-hidden="true" />
+              Source: {status.sourceName}
+              {status.usedFallback && ' — primary source unavailable, using a fallback'}
+            </p>
             <Pagination
               page={page}
               pageCount={pageCount}
@@ -129,10 +183,15 @@ export default function Archive() {
               onPage={setPage}
             />
             <div className="archive-list" role="list" style={{ marginTop: '1rem' }}>
-              {pageReleases.map((release) => {
+              {pageReleases.map((release, index) => {
                 const { type, className } = getReleaseType(release.tag_name, release.body)
                 return (
-                  <article key={release.tag_name} className="archive-item" role="listitem">
+                  <article
+                    key={release.tag_name}
+                    className="archive-item"
+                    role="listitem"
+                    style={{ animationDelay: `${index * 90}ms` }}
+                  >
                     <div className="archive-header">
                       <div className="archive-meta">
                         <h2 className="archive-title">

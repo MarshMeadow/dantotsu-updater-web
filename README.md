@@ -17,6 +17,7 @@
   <a href="#-features">Features</a> •
   <a href="#-what-is-dantotsu">About</a> •
   <a href="#-how-it-works">How it works</a> •
+  <a href="#-windows-macos-linux--ios">Other platforms</a> •
   <a href="#-staying-safe">Safety</a> •
   <a href="#-social-links">Socials</a> •
   <a href="#-getting-started">Getting Started</a> •
@@ -62,6 +63,19 @@ What you can do with Dantotsu:
 3. **Shows safe download links.** APKs are not hosted or modified here. The download buttons link directly to GitHub's file servers, so you get the exact file published by the updater repo.
 4. **Live fork information.** The “Maintained community forks” section asks GitHub for each fork’s latest push date, so you can see which projects are still active.
 5. **Built for privacy.** No tracking, analytics, ads, or API keys. The verification gate stores a simple token in your browser for 7 days, and your theme choice is saved locally.
+
+---
+
+## 💻 Windows, macOS, Linux & iOS
+
+Dantotsu is **Android-only** — there is no official Windows, macOS, Linux, or iOS version, and iOS cannot install Android APK files. The community options are:
+
+- 🖥️ **[Dartotsu](https://github.com/aayush2622/Dartotsu/releases)** — a community Flutter rewrite of Dantotsu with native builds for Windows, macOS, iOS, and Linux. The closest option to running Dantotsu off Android.
+- 🪟 **[BlueStacks](https://www.bluestacks.com)** / **[LDPlayer](https://www.ldplayer.net)** — Android emulators for Windows (BlueStacks also supports macOS) that can run the Dantotsu APK.
+- 🐧 **[Waydroid](https://waydro.id)** — runs a full Android system in a container on Linux, so you can install the Dantotsu APK natively on Wayland desktops.
+- 🍏 **[AltStore](https://altstore.io)** / **[SideStore](https://sidestore.io)** — sideloading tools for installing the Dartotsu iOS `.ipa` on iPhone or iPad, since it is not on the App Store.
+
+> **Note:** Windows Subsystem for Android was discontinued by Microsoft in March 2025 and is no longer available. Emulators and sideloading tools are third-party software — only download them from their official sites.
 
 ---
 

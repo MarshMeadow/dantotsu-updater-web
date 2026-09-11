@@ -13,6 +13,13 @@ export const MARSHMEADOW_LIST = 'https://n3k0s-index.netlify.app/list' as const
 export const MARSHMEADOW_GITHUB = 'https://github.com/MarshMeadow' as const
 export const GITHUB_LATEST_API = 'https://api.github.com/repos/itsmechinmoy/dantotsu-updater/releases/latest' as const
 export const GITHUB_RELEASES_API = 'https://api.github.com/repos/itsmechinmoy/dantotsu-updater/releases?per_page=100' as const
+export const DARTOTSU_REPO = 'https://github.com/aayush2622/Dartotsu' as const
+export const DARTOTSU_RELEASES = 'https://github.com/aayush2622/Dartotsu/releases' as const
+export const BLUESTACKS = 'https://www.bluestacks.com' as const
+export const LDPLAYER = 'https://www.ldplayer.net' as const
+export const ALTSTORE = 'https://altstore.io' as const
+export const SIDESTORE = 'https://sidestore.io' as const
+export const WAYDROID = 'https://waydro.id' as const
 
 export interface ForkInfo {
   name: string

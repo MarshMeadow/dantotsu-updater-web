@@ -34,6 +34,7 @@ import {
   DANTOTSU_SOURCE,
   DANTOTSU_TELEGRAM,
   DANTOTSU_WEBSITE,
+  DARTOTSU_REPO,
   MAINTAINED_FORKS,
   TELEGRAM_POST,
   UPDATER_REPO,
@@ -535,6 +536,17 @@ export default function Home() {
                 A fork is an independent project built from Dantotsu’s source. Forks may add new
                 features, support other platforms, or focus on different use cases. They are not
                 officially supported by the Dantotsu team.
+              </p>
+            </details>
+            <details className="faq-item">
+              <summary>Can I use Dantotsu on Windows, Linux, or iOS?</summary>
+              <p>
+                Dantotsu is Android-only. On Windows or macOS you can run the APK inside an Android
+                emulator such as BlueStacks or LDPlayer, and on Linux via Waydroid. For iOS — or a
+                native desktop app — try{' '}
+                <a href={DARTOTSU_REPO} target="_blank" rel="noopener noreferrer">Dartotsu</a>, a
+                community multiplatform rewrite. See the{' '}
+                <NavLink to="/resources">resources page</NavLink> for all options.
               </p>
             </details>
           </div>

@@ -2,10 +2,16 @@ import { NavLink } from 'react-router-dom'
 import { ExternalLink, GitBranch, Shield, BookOpen } from 'lucide-react'
 import Seo from '../components/Seo'
 import {
+  ALTSTORE,
+  BLUESTACKS,
   DANTOTSU_GITHUB,
   DANTOTSU_SOURCE,
   DANTOTSU_WEBSITE,
+  DARTOTSU_RELEASES,
+  LDPLAYER,
+  SIDESTORE,
   UPDATER_REPO,
+  WAYDROID,
   WEBSITE_REPO,
   MAINTAINED_FORKS,
 } from '../constants/links'
@@ -35,6 +41,45 @@ const OFFICIAL = [
     name: 'Website Repository',
     url: WEBSITE_REPO,
     description: 'The source code for this website. Open an issue or pull request here.',
+  },
+]
+
+const PLATFORMS = [
+  {
+    name: 'Dartotsu — Windows, macOS, iOS & Linux builds',
+    url: DARTOTSU_RELEASES,
+    description:
+      'A community Flutter rewrite of Dantotsu with native builds for Windows, macOS, iOS, and Linux. The closest option to running Dantotsu off Android.',
+  },
+  {
+    name: 'BlueStacks',
+    url: BLUESTACKS,
+    description:
+      'Android emulator for Windows and macOS. Install it, then open the Dantotsu APK inside the emulator.',
+  },
+  {
+    name: 'LDPlayer',
+    url: LDPLAYER,
+    description:
+      'Lightweight Android emulator for Windows that can install and run the Dantotsu APK.',
+  },
+  {
+    name: 'Waydroid',
+    url: WAYDROID,
+    description:
+      'Runs a full Android system inside a container on Linux. Lets you install and run the Dantotsu APK natively on Wayland-based desktops.',
+  },
+  {
+    name: 'AltStore',
+    url: ALTSTORE,
+    description:
+      'Sideloading tool for iPhone and iPad. Needed to install the Dartotsu iOS .ipa, since it is not distributed on the App Store.',
+  },
+  {
+    name: 'SideStore',
+    url: SIDESTORE,
+    description:
+      'An alternative iOS sideloading app for installing unsigned .ipa files such as the Dartotsu iOS build.',
   },
 ]
 
@@ -107,6 +152,39 @@ export default function Resources() {
               </a>
             ))}
           </div>
+        </section>
+
+        <section aria-labelledby="resources-platforms-title">
+          <h2 id="resources-platforms-title">Windows, macOS, Linux & iOS</h2>
+          <p>
+            Dantotsu itself is <strong>Android-only</strong>. There is no official Windows, macOS,
+            Linux, or iOS version, and iOS cannot install Android APK files. These community options
+            are the closest alternatives:
+          </p>
+          <div className="resource-list">
+            {PLATFORMS.map((item) => (
+              <a
+                key={item.name}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="resource-card"
+              >
+                <div className="resource-main">
+                  <ExternalLink size={20} className="resource-icon" aria-hidden="true" />
+                  <div>
+                    <h3 className="resource-name">{item.name}</h3>
+                    <p className="resource-desc">{item.description}</p>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+          <p>
+            Windows Subsystem for Android was discontinued by Microsoft in March 2025 and is no
+            longer available. Emulators and sideloading tools are third-party software — only
+            download them from their official sites.
+          </p>
         </section>
 
         <section aria-labelledby="resources-guides-title">

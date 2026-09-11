@@ -51,8 +51,8 @@ export const SEARCH_INDEX: SearchItem[] = [
   },
   {
     title: 'Release archive',
-    description: 'Every past updater release with changelogs and APKs.',
-    keywords: ['archive', 'old', 'versions', 'previous', 'history', 'changelog'],
+    description: 'Every past updater release with changelogs and APKs — plus Archive.org and APK site sources.',
+    keywords: ['archive', 'old', 'versions', 'previous', 'history', 'changelog', 'archive.org', 'apkmirror', 'apkpure', 'f-droid'],
     to: '/archive',
   },
   {

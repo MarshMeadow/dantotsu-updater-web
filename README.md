@@ -37,6 +37,7 @@
 - 🔁 **Multi-source archive** — the release archive automatically falls back across mirrors and proxies if a source fails.
 - ⭐ **Live repo & community stats** — GitHub star counts on repo cards and a live Discord member count.
 - 🤝 **Contributors page** — live contributor lists for Dantotsu, the updater, and this website, plus a maintainers highlight.
+- 🔄 **Obtainium guide** — steps to auto-update Dantotsu straight from GitHub releases, with a one-tap add link.
 - 🚀 **SEO + Open Graph + PWA manifest** — ready to share anywhere.
 - 🛡️ **Security headers & safe links** — CSP, `noopener noreferrer`, and URL allow-lists.
 - 📄 **DMCA / Legal page** — required legal and takedown information.

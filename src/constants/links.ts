@@ -22,6 +22,8 @@ export const LDPLAYER = 'https://www.ldplayer.net' as const
 export const ALTSTORE = 'https://altstore.io' as const
 export const SIDESTORE = 'https://sidestore.io' as const
 export const WAYDROID = 'https://waydro.id' as const
+export const OBTAINIUM_GITHUB = 'https://github.com/ImranR98/Obtainium' as const
+export const OBTAINIUM_ADD = 'https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/itsmechinmoy/dantotsu-updater' as const
 
 export interface ContributorRepo {
   label: string

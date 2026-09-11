@@ -22,6 +22,7 @@ import {
   CheckCircle,
   Heart,
   Puzzle,
+  RefreshCw,
   Star,
 } from 'lucide-react'
 import { fetchLatestRelease, formatBytes, formatDate, getPlatform, getReleaseType } from '../api/release'
@@ -38,6 +39,8 @@ import {
   DANTOTSU_WEBSITE,
   DARTOTSU_REPO,
   MAINTAINED_FORKS,
+  OBTAINIUM_ADD,
+  OBTAINIUM_GITHUB,
   TELEGRAM_POST,
   UPDATER_REPO,
   UPDATER_TELEGRAM,
@@ -503,6 +506,65 @@ export default function Home() {
             Dantotsu is made for <strong>Android</strong>. For Windows, macOS, Linux, or iOS, see the
             options on the <NavLink to="/resources">resources page</NavLink>.
           </p>
+        </section>
+
+        <section className="section section-raised" aria-labelledby="obtainium-title">
+          <h2 id="obtainium-title" className="section-heading">
+            <RefreshCw size={22} aria-hidden="true" />
+            Stay updated with Obtainium
+          </h2>
+          <p className="about-text">
+            <a href={OBTAINIUM_GITHUB} target="_blank" rel="noopener noreferrer">Obtainium</a> is a
+            free, open-source Android app that tracks updates directly from sources like GitHub
+            releases — no app store needed. Once set up, it notifies you whenever a new Dantotsu
+            release is published and installs it for you.
+          </p>
+          <ol className="install-list">
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Install Obtainium from its{' '}
+                <a href={`${OBTAINIUM_GITHUB}/releases`} target="_blank" rel="noopener noreferrer">
+                  GitHub releases
+                </a>{' '}
+                page or from F-Droid.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Open Obtainium and tap <strong>Add App</strong>.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Paste the updater repository URL:{' '}
+                <code>https://github.com/itsmechinmoy/dantotsu-updater</code>
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Confirm the app details — Obtainium picks the APK from each new release and handles
+                updates from then on.
+              </span>
+            </li>
+          </ol>
+          <p className="about-note">
+            Tip: this also works for the community forks — just paste the fork’s GitHub URL instead.
+            Dartotsu even ships a one-tap Obtainium link in its README.
+          </p>
+          <div className="hero-fallbacks">
+            <a className="button" href={OBTAINIUM_ADD} target="_blank" rel="noopener noreferrer">
+              <RefreshCw size={18} />
+              Add to Obtainium
+            </a>
+            <a className="button button-secondary" href={OBTAINIUM_GITHUB} target="_blank" rel="noopener noreferrer">
+              <ExternalLink size={18} />
+              Get Obtainium
+            </a>
+          </div>
         </section>
 
         <section className="section section-raised" aria-labelledby="faq-title">

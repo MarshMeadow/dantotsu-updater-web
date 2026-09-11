@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { ExternalLink, GitBranch, Shield, BookOpen, Star, Users } from 'lucide-react'
+import { ExternalLink, GitBranch, Shield, BookOpen, Star, Users, RefreshCw } from 'lucide-react'
 import Seo from '../components/Seo'
 import { formatCount } from '../api/github'
 import { useRepoMeta } from '../hooks/useStats'
@@ -11,6 +11,7 @@ import {
   DANTOTSU_WEBSITE,
   DARTOTSU_RELEASES,
   LDPLAYER,
+  OBTAINIUM_GITHUB,
   SIDESTORE,
   UPDATER_REPO,
   WAYDROID,
@@ -229,6 +230,20 @@ export default function Resources() {
                 </div>
               </div>
             </NavLink>
+            <a
+              href={OBTAINIUM_GITHUB}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="resource-card"
+            >
+              <div className="resource-main">
+                <RefreshCw size={20} className="resource-icon" aria-hidden="true" />
+                <div>
+                  <h3 className="resource-name">Auto-update with Obtainium</h3>
+                  <p className="resource-desc">Track new Dantotsu releases straight from GitHub — setup guide on the home page.</p>
+                </div>
+              </div>
+            </a>
             <NavLink to="/contributors" className="resource-card">
               <div className="resource-main">
                 <Users size={20} className="resource-icon" aria-hidden="true" />

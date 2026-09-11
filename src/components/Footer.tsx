@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { MessageCircle, GitBranch, ExternalLink, Shield, Download } from 'lucide-react'
+import { MessageCircle, GitBranch, ExternalLink, Shield, Download, Lock } from 'lucide-react'
 import { DISCLAIMER, RISK_NOTICE } from '../constants/legal'
 import { DANTOTSU_DISCORD, DANTOTSU_TELEGRAM, UPDATER_TELEGRAM, UPDATER_REPO, DANTOTSU_SOURCE, WEBSITE_REPO } from '../constants/links'
 
@@ -73,6 +73,10 @@ export default function Footer() {
           <NavLink to="/archive" className="footer-link">
             <Download size={16} aria-hidden="true" />
             Archive
+          </NavLink>
+          <NavLink to="/extensions" className="footer-link">
+            <Lock size={16} aria-hidden="true" />
+            Extensions
           </NavLink>
           <NavLink to="/dmca" className="footer-link">
             <Shield size={16} aria-hidden="true" />

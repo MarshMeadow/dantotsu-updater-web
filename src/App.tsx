@@ -10,6 +10,7 @@ const Home = lazy(() => import('./pages/Home'))
 const Community = lazy(() => import('./pages/Community'))
 const Resources = lazy(() => import('./pages/Resources'))
 const Archive = lazy(() => import('./pages/Archive'))
+const Extensions = lazy(() => import('./pages/Extensions'))
 const Dmca = lazy(() => import('./pages/Dmca'))
 const Privacy = lazy(() => import('./pages/Privacy'))
 const Terms = lazy(() => import('./pages/Terms'))
@@ -44,6 +45,7 @@ function App() {
           <Route path="/community" element={<Community />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/archive" element={<Archive />} />
+          <Route path="/extensions" element={<Extensions />} />
           <Route path="/dmca" element={<Dmca />} />
           <Route path="/legal/dmca" element={<Dmca />} />
           <Route path="/privacy" element={<Privacy />} />

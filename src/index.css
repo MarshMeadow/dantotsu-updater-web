@@ -961,6 +961,12 @@ button {
   border-radius: var(--radius-sm);
 }
 
+.section-subheading {
+  font-size: 1.1rem;
+  margin: 1.5rem 0 1rem;
+  color: var(--text);
+}
+
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -1070,6 +1076,20 @@ button {
   margin: 0;
   color: var(--text-dim);
   line-height: 1.65;
+}
+
+code {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  background: var(--surface-2);
+  color: var(--primary-bright);
+  padding: 0.15rem 0.35rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
+  border: 1px solid var(--border);
+}
+
+.how-features .feature-card h3 {
+  color: var(--primary-bright);
 }
 
 /* Light theme */

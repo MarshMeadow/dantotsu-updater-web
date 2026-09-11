@@ -16,6 +16,8 @@
 <p align="center">
   <a href="#-features">Features</a> •
   <a href="#-what-is-dantotsu">About</a> •
+  <a href="#-how-it-works">How it works</a> •
+  <a href="#-staying-safe">Safety</a> •
   <a href="#-social-links">Socials</a> •
   <a href="#-getting-started">Getting Started</a> •
   <a href="#-deployment">Deployment</a> •
@@ -53,7 +55,35 @@ What you can do with Dantotsu:
 
 ---
 
-## 🔗 Social Links
+## ⚙️ How It Works
+
+1. **Fetches the latest release.** When you load the page, your browser calls the GitHub API for the `itsmechinmoy/dantotsu-updater` repository and pulls the newest release tag, date, assets, and notes.
+2. **Validates everything.** The site checks that release and download URLs come from trusted GitHub domains. It strips control characters and ignores any malformed data.
+3. **Shows safe download links.** APKs are not hosted or modified here. The download buttons link directly to GitHub's file servers, so you get the exact file published by the updater repo.
+4. **Live fork information.** The “Maintained community forks” section asks GitHub for each fork’s latest push date, so you can see which projects are still active.
+5. **Built for privacy.** No tracking, analytics, ads, or API keys. The verification gate stores a simple token in your browser for 7 days, and your theme choice is saved locally.
+
+---
+
+## �️ Staying Safe
+
+- **Only download from sources you trust.** Stick to official or well-known community repositories and double-check URLs.
+- **Scan files before installing.** Upload APKs to [VirusTotal](https://www.virustotal.com) to scan with dozens of antivirus engines, or scan with your installed antivirus.
+- **Keep your device updated.** Install Android security updates. Only enable “Install unknown apps” for apps and browsers you actually use.
+- **Use strong, unique passwords.** Do not reuse passwords. Use a password manager and enable two-factor authentication.
+- **Be careful with extensions.** Only install third-party extensions from sources you trust.
+
+### How to scan an APK with an antivirus
+
+1. Download the APK to a folder you can find, such as your **Downloads** folder.
+2. Go to [virustotal.com](https://www.virustotal.com) and upload the APK.
+3. Wait for the scan to finish and review the results from all engines.
+4. If many antivirus engines flag the file, or the results look suspicious, **delete it** and do not install.
+5. On Windows, you can also right-click the file and choose **“Scan with Windows Defender”** or **“Scan with …”** if you have another antivirus installed.
+
+---
+
+## �🔗 Social Links
 
 - 🌐 **Official Website:** [dantotsu.app](https://dantotsu.app/)
 - 💬 **Official Discord:** [discord.gg/FpwpYPJAy9](https://discord.gg/FpwpYPJAy9)

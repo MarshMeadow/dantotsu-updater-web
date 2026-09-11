@@ -516,6 +516,134 @@ export default function Home() {
             </details>
           </div>
         </section>
+
+        <section className="section section-raised" aria-labelledby="how-title">
+          <h2 id="how-title" className="section-heading">
+            <Info size={22} aria-hidden="true" />
+            How this website works
+          </h2>
+          <div className="features how-features">
+            <article className="feature-card">
+              <h3>1. Fetches the latest release</h3>
+              <p>
+                When you load the page, your browser calls the GitHub API for the{' '}
+                <code>itsmechinmoy/dantotsu-updater</code> repository and pulls the newest release
+                tag, date, assets, and notes.
+              </p>
+            </article>
+            <article className="feature-card">
+              <h3>2. Validates everything</h3>
+              <p>
+                The site checks that release and download URLs come from trusted GitHub domains. It
+                strips control characters and ignores any malformed data.
+              </p>
+            </article>
+            <article className="feature-card">
+              <h3>3. Shows safe download links</h3>
+              <p>
+                APKs are not hosted or modified here. The download buttons link directly to GitHub's
+                file servers, so you get the exact file published by the updater repo.
+              </p>
+            </article>
+            <article className="feature-card">
+              <h3>4. Live fork information</h3>
+              <p>
+                The “Maintained community forks” section asks GitHub for each fork’s latest push
+                date, so you can see which projects are still active.
+              </p>
+            </article>
+            <article className="feature-card">
+              <h3>5. Built for privacy</h3>
+              <p>
+                No tracking, analytics, ads, or API keys. The verification gate stores a simple token
+                in your browser for 7 days, and your theme choice is saved locally.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section className="section section-raised" aria-labelledby="safety-title">
+          <h2 id="safety-title" className="section-heading">
+            <Shield size={22} aria-hidden="true" />
+            Staying safe online
+          </h2>
+          <div className="features how-features">
+            <article className="feature-card">
+              <h3>Only download from trusted sources</h3>
+              <p>
+                Stick to official or well-known community repositories. Double-check the URL before
+                downloading anything.
+              </p>
+            </article>
+            <article className="feature-card">
+              <h3>Scan files before installing</h3>
+              <p>
+                Upload APKs to{' '}
+                <a href="https://www.virustotal.com" target="_blank" rel="noopener noreferrer">
+                  VirusTotal
+                </a>{' '}
+                to scan with dozens of antivirus engines, or scan with your installed antivirus.
+              </p>
+            </article>
+            <article className="feature-card">
+              <h3>Keep your device updated</h3>
+              <p>
+                Install Android security updates. Only enable “Install unknown apps” for apps and
+                browsers you actually use.
+              </p>
+            </article>
+            <article className="feature-card">
+              <h3>Use strong, unique passwords</h3>
+              <p>
+                Do not reuse passwords. Use a password manager and enable two-factor authentication
+                wherever possible.
+              </p>
+            </article>
+            <article className="feature-card">
+              <h3>Be careful with extensions</h3>
+              <p>
+                Only install third-party extensions from sources you trust. Extensions can access a lot
+                of data and permissions.
+              </p>
+            </article>
+          </div>
+
+          <h3 className="section-subheading">How to scan an APK with an antivirus</h3>
+          <ol className="install-list safety-list">
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>Download the APK to a folder you can find, such as your Downloads folder.</span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                Go to{' '}
+                <a href="https://www.virustotal.com" target="_blank" rel="noopener noreferrer">
+                  virustotal.com
+                </a>{' '}
+                and upload the APK.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>Wait for the scan to finish and review the results from all engines.</span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                If many antivirus engines flag the file, or the results look suspicious, delete it and
+                do not install.
+              </span>
+            </li>
+            <li>
+              <CheckCircle size={16} aria-hidden="true" />
+              <span>
+                You can also right-click the file on Windows and choose “Scan with Windows Defender” or
+                “Scan with …” if you have another antivirus installed.
+              </span>
+            </li>
+          </ol>
+        </section>
       </div>
     </>
   )

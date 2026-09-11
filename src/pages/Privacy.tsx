@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import Seo from '../components/Seo'
+import { WEBSITE_REPO } from '../constants/links'
 
 export default function Privacy() {
   return (
@@ -71,8 +72,10 @@ export default function Privacy() {
         <section aria-labelledby="privacy-contact-title">
           <h2 id="privacy-contact-title">Contact</h2>
           <p>
-            For privacy-related questions, contact:{' '}
-            <a href="mailto:privacy@example.com">privacy@example.com</a>
+            For privacy-related questions, please open an issue on the website repository:{' '}
+            <a href={WEBSITE_REPO} target="_blank" rel="noopener noreferrer">
+              {WEBSITE_REPO}
+            </a>
           </p>
         </section>
 

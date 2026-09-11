@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { MessageCircle, GitBranch, ExternalLink, Shield } from 'lucide-react'
 import { DISCLAIMER, RISK_NOTICE } from '../constants/legal'
-import { DANTOTSU_DISCORD, DANTOTSU_TELEGRAM, UPDATER_TELEGRAM, UPDATER_REPO, DANTOTSU_SOURCE } from '../constants/links'
+import { DANTOTSU_DISCORD, DANTOTSU_TELEGRAM, UPDATER_TELEGRAM, UPDATER_REPO, DANTOTSU_SOURCE, WEBSITE_REPO } from '../constants/links'
 
 export default function Footer() {
   return (
@@ -52,6 +52,15 @@ export default function Footer() {
           >
             <GitBranch size={16} aria-hidden="true" />
             Dantotsu Source
+          </a>
+          <a
+            href={WEBSITE_REPO}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-link"
+          >
+            <ExternalLink size={16} aria-hidden="true" />
+            Website GitHub
           </a>
           <NavLink to="/dmca" className="footer-link">
             <Shield size={16} aria-hidden="true" />

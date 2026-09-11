@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import Seo from '../components/Seo'
+import { WEBSITE_REPO } from '../constants/links'
 
 export default function Terms() {
   return (
@@ -70,8 +71,10 @@ export default function Terms() {
         <section aria-labelledby="terms-contact-title">
           <h2 id="terms-contact-title">Contact</h2>
           <p>
-            For terms-related questions, contact:{' '}
-            <a href="mailto:terms@example.com">terms@example.com</a>
+            For terms-related questions, please open an issue on the website repository:{' '}
+            <a href={WEBSITE_REPO} target="_blank" rel="noopener noreferrer">
+              {WEBSITE_REPO}
+            </a>
           </p>
         </section>
 

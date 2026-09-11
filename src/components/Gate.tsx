@@ -15,17 +15,62 @@ export function isVerified(): boolean {
   }
 }
 
+interface PuzzleBase {
+  question: string
+  correct: string
+  wrong: string[]
+}
+
 interface Puzzle {
-  text: string
-  answer: number
+  question: string
+  correct: string
+  options: string[]
+}
+
+const PUZZLES: PuzzleBase[] = [
+  {
+    question: 'What app is this website for?',
+    correct: 'Dantotsu',
+    wrong: ['Google', 'Netflix', 'TikTok'],
+  },
+  {
+    question: 'Which one is a fruit?',
+    correct: 'Apple',
+    wrong: ['Car', 'Rock', 'House'],
+  },
+  {
+    question: 'Which animal barks?',
+    correct: 'Dog',
+    wrong: ['Cat', 'Fish', 'Bird'],
+  },
+  {
+    question: 'What do you use to see in the dark?',
+    correct: 'Flashlight',
+    wrong: ['Spoon', 'Sock', 'Banana'],
+  },
+  {
+    question: 'Which of these is not a color?',
+    correct: 'Table',
+    wrong: ['Blue', 'Red', 'Green'],
+  },
+]
+
+function shuffle<T>(arr: T[]): T[] {
+  const copy = [...arr]
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[copy[i], copy[j]] = [copy[j], copy[i]]
+  }
+  return copy
 }
 
 function createPuzzle(): Puzzle {
-  const a = Math.floor(Math.random() * 10) + 2
-  const b = Math.floor(Math.random() * 10) + 2
-  const op = Math.random() > 0.5 ? '+' : '-'
-  const answer = op === '+' ? a + b : a - b
-  return { text: `${a} ${op} ${b}`, answer }
+  const base = PUZZLES[Math.floor(Math.random() * PUZZLES.length)]
+  return {
+    question: base.question,
+    correct: base.correct,
+    options: shuffle([base.correct, ...base.wrong]),
+  }
 }
 
 function getFocusable(container: HTMLElement): HTMLElement[] {
@@ -35,7 +80,10 @@ function getFocusable(container: HTMLElement): HTMLElement[] {
     )
   ).filter((el) => {
     if (el.getAttribute('tabindex') === '-1') return false
-    if ('disabled' in el && (el as HTMLButtonElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).disabled) {
+    if (
+      'disabled' in el &&
+      (el as HTMLButtonElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).disabled
+    ) {
       return false
     }
     const style = window.getComputedStyle(el)
@@ -45,7 +93,6 @@ function getFocusable(container: HTMLElement): HTMLElement[] {
 
 export default function Gate({ onVerify }: { onVerify: () => void }) {
   const puzzle = useMemo(createPuzzle, [])
-  const [value, setValue] = useState('')
   const [error, setError] = useState<string | null>(null)
   const cardRef = useRef<HTMLDivElement>(null)
 
@@ -77,16 +124,10 @@ export default function Gate({ onVerify }: { onVerify: () => void }) {
     return () => card.removeEventListener('keydown', handleKey)
   }, [])
 
-  const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
-    e?.preventDefault()
+  const check = (option: string) => {
     setError(null)
-    const n = Number(value.trim())
-    if (Number.isNaN(n)) {
-      setError('Please enter a number.')
-      return
-    }
-    if (n !== puzzle.answer) {
-      setError('That is not correct. Try again.')
+    if (option !== puzzle.correct) {
+      setError('Not quite. Try another option.')
       return
     }
     try {
@@ -105,40 +146,29 @@ export default function Gate({ onVerify }: { onVerify: () => void }) {
           Verify you are human
         </h2>
         <p className="gate-desc">
-          Solve the quick puzzle to continue. You won’t need to do this again for 7 days.
+          Pick the correct answer to continue. You won’t need to do this again for 7 days.
         </p>
-        <form onSubmit={handleSubmit} className="gate-form" noValidate>
-          <div className="gate-puzzle" aria-live="polite">
-            What is <strong>{puzzle.text}</strong>?
-          </div>
-          <label htmlFor="puzzle-answer" className="sr-only">
-            Puzzle answer
-          </label>
-          <input
-            id="puzzle-answer"
-            type="text"
-            inputMode="numeric"
-            pattern="-?[0-9]*"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            className="gate-input"
-            placeholder="Answer"
-            autoFocus
-          />
-          {error && (
-            <p className="gate-error" role="alert">
-              {error}
-            </p>
-          )}
-          <button
-            type="submit"
-            className="button button-large"
-            disabled={!value.trim()}
-          >
-            Continue
-            <ArrowRight size={18} />
-          </button>
-        </form>
+        <div className="gate-question" aria-live="polite">
+          {puzzle.question}
+        </div>
+        <div className="gate-options" role="group" aria-label="Answer choices">
+          {puzzle.options.map((option) => (
+            <button
+              key={option}
+              type="button"
+              className="gate-option"
+              onClick={() => check(option)}
+            >
+              {option}
+              <ArrowRight size={16} className="gate-option-icon" />
+            </button>
+          ))}
+        </div>
+        {error && (
+          <p className="gate-error" role="alert">
+            {error}
+          </p>
+        )}
       </div>
     </div>
   )

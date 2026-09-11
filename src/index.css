@@ -836,14 +836,9 @@ button {
   font-size: 0.95rem;
 }
 
-.gate-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.gate-puzzle {
-  font-size: 1.25rem;
+.gate-question {
+  font-size: 1.15rem;
+  font-weight: 600;
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -851,21 +846,46 @@ button {
   color: var(--text);
 }
 
-.gate-input {
+.gate-options {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.gate-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
   width: 100%;
-  padding: 0.85rem;
+  padding: 0.85rem 1rem;
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   color: var(--text);
   font-size: 1rem;
-  text-align: center;
-  transition: border-color var(--transition);
+  font-weight: 500;
+  text-align: left;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition);
 }
 
-.gate-input:focus {
+.gate-option:hover,
+.gate-option:focus {
+  background: var(--surface-3);
   border-color: var(--primary);
-  outline: none;
+  transform: translateY(-2px);
+}
+
+.gate-option-icon {
+  color: var(--primary-bright);
+  opacity: 0;
+  transition: opacity var(--transition), transform var(--transition);
+  transform: translateX(-4px);
+}
+
+.gate-option:hover .gate-option-icon,
+.gate-option:focus .gate-option-icon {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .gate-error {

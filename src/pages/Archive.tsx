@@ -7,9 +7,14 @@ import { archiveOrgItemUrl, fetchArchiveOrgItems, type ArchiveOrgItem } from '..
 import {
   APKMIRROR,
   APKPURE_SEARCH,
+  APTOIDE_SEARCH,
   ARCHIVE_ORG_SEARCH,
   DANTOTSU_WEBSITE,
   FDROID_SEARCH,
+  PLAY_STORE_SEARCH,
+  UPDATER_REPO,
+  UPDATER_TELEGRAM,
+  UPTODOWN,
 } from '../constants/links'
 import {
   fetchAllReleases,
@@ -94,6 +99,31 @@ const EXTERNAL_SOURCES = [
     name: 'F-Droid',
     url: FDROID_SEARCH,
     description: 'Search the F-Droid catalogue for Dantotsu or related packages.',
+  },
+  {
+    name: 'Uptodown',
+    url: UPTODOWN,
+    description: 'Dantotsu listing on the Uptodown app store with version history.',
+  },
+  {
+    name: 'Aptoide',
+    url: APTOIDE_SEARCH,
+    description: 'Search the Aptoide store for Dantotsu builds.',
+  },
+  {
+    name: 'Google Play',
+    url: PLAY_STORE_SEARCH,
+    description: 'Search Google Play — Dantotsu is not officially listed, but this catches impostor apps to avoid.',
+  },
+  {
+    name: 'Updater Telegram',
+    url: UPDATER_TELEGRAM,
+    description: 'Release announcements and APKs posted on the community updater channel.',
+  },
+  {
+    name: 'GitHub releases page',
+    url: `${UPDATER_REPO}/releases`,
+    description: 'Browse the updater repository’s releases directly on GitHub.',
   },
   {
     name: 'Archive.org search',
@@ -210,20 +240,20 @@ export default function Archive() {
           <button
             type="button"
             role="tab"
-            aria-selected={tab === 'archiveorg'}
-            className={`setting-option${tab === 'archiveorg' ? ' active' : ''}`}
-            onClick={() => setTab('archiveorg')}
-          >
-            <Database size={16} aria-hidden="true" /> Archive.org
-          </button>
-          <button
-            type="button"
-            role="tab"
             aria-selected={tab === 'external'}
             className={`setting-option${tab === 'external' ? ' active' : ''}`}
             onClick={() => setTab('external')}
           >
             <Globe size={16} aria-hidden="true" /> APK sites & stores
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={tab === 'archiveorg'}
+            className={`setting-option${tab === 'archiveorg' ? ' active' : ''}`}
+            onClick={() => setTab('archiveorg')}
+          >
+            <Database size={16} aria-hidden="true" /> Archive.org
           </button>
         </div>
 
@@ -371,6 +401,10 @@ export default function Archive() {
 
         {tab === 'archiveorg' && (
           <section aria-labelledby="archive-org-title">
+            <p className="archive-source">
+              <Server size={14} aria-hidden="true" />
+              Source: Archive.org (Internet Archive)
+            </p>
             {orgStatus.kind === 'loading' && (
               <div className="archive-loading" role="status" aria-live="polite">
                 <div className="spinner" aria-hidden="true" />
@@ -456,6 +490,10 @@ export default function Archive() {
 
         {tab === 'external' && (
           <section aria-labelledby="archive-external-title">
+            <p className="archive-source">
+              <Server size={14} aria-hidden="true" />
+              Source: External sites — results open in a new tab
+            </p>
             <p>
               These sites do not offer an API this page can query, so each opens in a new
               tab with Dantotsu results ready. Always check the uploader and signatures
